@@ -1,8 +1,8 @@
-# my-day-inc
+# 🧸 My Day
 
 > Social diary
 
-## Build Setup
+## Useful commands
 
 ```bash
 # install dependencies
@@ -11,12 +11,6 @@ $ yarn install
 # serve with hot reload at localhost:3000
 $ yarn dev
 
-# build for production and launch server
-$ yarn build
-$ yarn start
-
-# generate static project
+# build for production
 $ yarn generate
 ```
-
-For detailed explanation on how things work, check out [Nuxt.js docs](https://nuxtjs.org).

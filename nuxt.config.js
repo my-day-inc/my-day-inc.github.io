@@ -5,7 +5,7 @@ export default {
   ** Headers of the page
   */
   head: {
-    title: process.env.npm_package_name || '',
+    title: 'My Day',
     meta: [
       { charset: 'utf-8' },
       { name: 'viewport', content: 'width=device-width, initial-scale=1' },
@@ -18,7 +18,7 @@ export default {
   /*
   ** Customize the progress-bar color
   */
-  loading: { color: '#fff' },
+  loading: { color: '#409eff' },
   /*
   ** Global CSS
   */
@@ -35,6 +35,8 @@ export default {
   ** Nuxt.js dev-modules
   */
   buildModules: [
+    // https://typescript.nuxtjs.org
+    '@nuxt/typescript-build',
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
@@ -55,6 +57,14 @@ export default {
   axios: {
   },
   /*
+  ** Typescript configuration
+  */
+  typescript: {
+    typeCheck: {
+      eslint: true
+    }
+  },
+  /*
   ** Build configuration
   */
   build: {
@@ -62,7 +72,7 @@ export default {
     /*
     ** You can extend webpack config here
     */
-    extend (config, ctx) {
+    extend (_config, _ctx) {
     }
   }
 }
