@@ -1,7 +1,20 @@
 <template lang='pug'>
-  div
-    nuxt
+  el-container
+    el-aside
+      AppSidebar
+    el-main
+      nuxt
 </template>
+
+<script lang='ts'>
+import AppSidebar from '~/components/AppSidebar'
+
+export default {
+  components: {
+    AppSidebar
+  }
+}
+</script>
 
 <style lang='sass'>
   html

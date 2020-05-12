@@ -1,3 +1,3 @@
 <template lang='pug'>
-  h1 Sign in
+  h1 Вход
 </template>

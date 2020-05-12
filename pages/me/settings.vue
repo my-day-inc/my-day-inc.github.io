@@ -1,3 +1,3 @@
 <template lang='pug'>
-  h1 Аккаунт
+  h1 Настройки
 </template>
