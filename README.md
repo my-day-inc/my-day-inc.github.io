@@ -1,8 +1,8 @@
 # 🧸 My Day
 
-> Social diary
+> Social diary app
 
-## Useful commands
+## Development
 
 ```bash
 # install dependencies
