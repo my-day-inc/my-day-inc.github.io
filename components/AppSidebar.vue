@@ -1,5 +1,5 @@
 <template lang='pug'>
-el-menu(default-active='/' collapse router)
+el-menu(collapse router)
   el-menu-item(index='/')
     i.el-icon-s-home
     span(slot='title') Домой
@@ -12,3 +12,8 @@ el-menu(default-active='/' collapse router)
     i.el-icon-s-tools
     span(slot='title') Настройки
 </template>
+
+<style lang='sass'>
+  .el-menu
+    height: 100%
+</style>

@@ -101,7 +101,8 @@
     "rules": {
       "order/properties-alphabetical-order": null,
       "block-opening-brace-space-before": null,
-      "declaration-block-trailing-semicolon": "never"
+      "declaration-block-trailing-semicolon": "never",
+      "number-leading-zero": "never"
     }
   }
 }

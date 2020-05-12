@@ -3,11 +3,13 @@
     el-aside
       AppSidebar
     el-main
-      nuxt
+      el-row
+        el-col(:span='20')
+          nuxt
 </template>
 
 <script lang='ts'>
-import AppSidebar from '~/components/AppSidebar'
+import AppSidebar from '~/components/AppSidebar.vue'
 
 export default {
   components: {
@@ -18,7 +20,7 @@ export default {
 
 <style lang='sass'>
   html
-    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif
     font-size: 16px
     word-spacing: 1px
     -moz-osx-font-smoothing: grayscale
