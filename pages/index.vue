@@ -1,6 +1,7 @@
 <template lang='pug'>
   div
     h1 Домашняя страница
+
     p.desc
       | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
       | Morbi mattis dictum mauris. Phasellus facilisis urna eget
@@ -8,11 +9,12 @@
       | Donec id rutrum ante, ac mollis lectus.
       | Nulla diam dui, varius non ipsum eu, pharetra sollicitudin quam.
 
-    el-carousel(height='500px' type='card')
-      el-carousel-item(v-for='(img, i) in imgs' :key='i')
-        img(:src='img' alt='Скриншот')
+    el-carousel(height='500px'
+                :interval='5000')
+      el-carousel-item(v-for='i in 3' :key='i')
+        img.carousel-img(:src='require(`~/assets/images/homepage/${i}.jpg`)')
 
-    el-timeline(:reverse='reverse')
+    el-timeline
       el-timeline-item(v-for='(point, i) in points' :key='i'
         :type='point.type' :timestamp='point.timestamp') {{ point.content }}
 </template>
@@ -21,11 +23,6 @@
 export default {
   data () {
     return {
-      imgs: [
-        'https://cdn.pixabay.com/photo/2015/04/23/22/00/tree-736885__340.jpg',
-        'https://cdn.pixabay.com/photo/2015/06/19/21/24/the-road-815297__340.jpg',
-        'https://cdn.pixabay.com/photo/2015/12/01/20/28/road-1072823__340.jpg'
-      ],
       points: [
         {
           content: 'Test',
@@ -54,7 +51,20 @@ export default {
 </script>
 
 <style lang='sass' scoped>
+  .desc,
+  .el-carousel
+    margin-top: 2rem
+
   .desc
     font-size: 1.2rem
-    padding: 1rem 0
+    padding: 1rem 20% 1rem 0
+
+  .el-carousel
+    border-radius: .5rem
+    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+
+  .carousel-img
+    width: 100%
+    max-height: 100%
+    object-fit: cover
 </style>

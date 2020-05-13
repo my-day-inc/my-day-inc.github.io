@@ -1,19 +1,13 @@
 <template lang='pug'>
   el-container
-    el-aside
+    el-aside(width='calc(84px + 2rem)')
       AppSidebar
 
     el-container
-      el-header
-        h1 Test
-
       el-main
         el-row
-          el-col
+          el-col.content
             nuxt
-
-      el-footer
-        p Test
 </template>
 
 <script lang='ts'>
@@ -28,4 +22,7 @@ export default {
   .el
     &-aside
       overflow: initial
+
+  .content
+    padding: 2rem calc(20px + 2rem) 2rem 0
 </style>
