@@ -28,9 +28,11 @@
       | fermentum tortor in, lobortis lorem. Quisque posuere, ante a lacinia laoreet,
       | tortor arcu scelerisque eros, ullamcorper commodo ex lacus a urna.
 
-    el-timeline
-      el-timeline-item(v-for='(point, i) in points' :key='i'
-        :type='point.type' :timestamp='point.timestamp') {{ point.content }}
+    el-steps(:active='2' align-center)
+      el-step(title='Step 1' description='Some description')
+      el-step(title='Step 2' description='Some description')
+      el-step(title='Step 3' description='Some description')
+      el-step(title='Step 4' description='Some description')
 
     .faq
       h3 Остались вопросы?
@@ -58,42 +60,10 @@
             | that the users are used to
 </template>
 
-<script lang='ts'>
-export default {
-  data () {
-    return {
-      points: [
-        {
-          content: 'Test',
-          timestamp: '2018-04-12 20:46',
-          type: 'success'
-        },
-        {
-          content: 'Another test',
-          timestamp: '2018-04-12 20:46',
-          type: 'primary'
-        },
-        {
-          content: 'Another another test',
-          timestamp: '2018-04-12 20:46',
-          type: 'danger'
-        },
-        {
-          content: 'Test another',
-          timestamp: '2018-04-12 20:46',
-          type: 'info'
-        }
-      ]
-    }
-  }
-}
-</script>
-
 <style lang='sass' scoped>
   h3,
   .desc,
   .el-carousel,
-  .el-timeline,
   .el-collapse
     margin-top: 2rem
 
@@ -110,6 +80,9 @@ export default {
     width: 100%
     max-height: 100%
     object-fit: cover
+
+  .el-steps
+    margin: 5rem 0
 
   .faq
     padding: 0 10rem
