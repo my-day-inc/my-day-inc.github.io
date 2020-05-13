@@ -57,7 +57,9 @@
     "extends": [
       "@nuxtjs/eslint-config-typescript"
     ],
-    "ignorePatterns": ["sw.js"]
+    "ignorePatterns": [
+      "sw.js"
+    ]
   },
   "babel": {
     "env": {

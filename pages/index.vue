@@ -53,13 +53,7 @@ export default {
 }
 </script>
 
-<style lang='sass'>
-  h1,
-  .el-carousel,
-  .el-timeline,
-  .desc
-    margin-top: 2rem
-
+<style lang='sass' scoped>
   .desc
     font-size: 1.2rem
     padding: 1rem 0

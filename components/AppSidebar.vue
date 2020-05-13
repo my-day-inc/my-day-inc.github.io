@@ -1,5 +1,7 @@
 <template lang='pug'>
-el-menu(collapse router)
+el-menu(:default-active='path'
+        collapse
+        router)
   el-menu-item(index='/')
     i.el-icon-s-home
     span(slot='title') Домой
@@ -8,12 +10,47 @@ el-menu(collapse router)
     i.el-icon-user-solid
     span(slot='title') Аккаунт
 
+  el-menu-item(index='/dashboard')
+    i.el-icon-menu
+    span(slot='title') Планировщик
+
+  el-menu-item(disabled)
+    i.el-icon-s-order
+    span(slot='title') Документы
+
+  el-menu-item(disabled)
+    i.el-icon-s-marketing
+    span(slot='title') Отчеты
+
+  el-menu-item(disabled)
+    i.el-icon-share
+    span(slot='title') Контакты
+
+  el-menu-item(disabled)
+    i.el-icon-s-cooperation
+    span(slot='title') Компания
+
   el-menu-item(index='/me/settings')
     i.el-icon-s-tools
     span(slot='title') Настройки
 </template>
 
-<style lang='sass'>
-  .el-menu
-    height: 100%
+<script lang='ts'>
+import Vue from 'vue'
+
+export default Vue.extend({
+  computed: {
+    path (): string {
+      return this.$route.path
+    }
+  }
+})
+</script>
+
+<style lang='sass' scoped>
+  .el
+    &-menu
+      position: sticky
+      top: 0
+      height: 100vh
 </style>
