@@ -88,19 +88,27 @@ export default {
 
   .el-carousel
     border-radius: .5rem
-    box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
     margin-bottom: 3rem
+    +sm
+      height: 300px !important
 
   .carousel-img
     width: 100%
     max-height: 100%
     object-fit: cover
+    +md
+      max-width: 100%
+      height: 100%
 
   .el-steps
     margin: 5rem 0
 
   .faq
     padding: 0 10rem
+    +md
+      padding: 0 3rem
+    +sm
+      padding: 0
 
   .rate
     margin-top: 5rem

@@ -22,7 +22,11 @@ export default {
   .el
     &-aside
       overflow: initial
+      +sm
+        width: 64px !important
 
   .content
     padding: 2rem calc(20px + 2rem) 2rem 0
+    +sm
+      padding: 2rem 0
 </style>

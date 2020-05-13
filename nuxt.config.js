@@ -41,7 +41,9 @@ export default {
     // Doc: https://github.com/nuxt-community/eslint-module
     '@nuxtjs/eslint-module',
     // Doc: https://github.com/nuxt-community/stylelint-module
-    '@nuxtjs/stylelint-module'
+    '@nuxtjs/stylelint-module',
+    // https://github.com/nuxt-community/style-resources-module
+    '@nuxtjs/style-resources'
   ],
   /*
   ** Nuxt.js modules
@@ -64,6 +66,12 @@ export default {
     typeCheck: {
       eslint: true
     }
+  },
+  /*
+  ** Common resources
+  */
+  styleResources: {
+    sass: ['~/assets/breakpoints.sass']
   },
   /*
   ** Build configuration

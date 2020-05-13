@@ -1,0 +1,21 @@
+$xl-width: 1200px
+$lg-width: 992px
+$md-width: 768px
+$sm-width: 576
+$xs-width: 410px
+
+=xl
+  @media (max-width: #{$xl-width - 1px})
+    @content
+=lg
+  @media (max-width: #{$lg-width - 1px})
+    @content
+=md
+  @media (max-width: #{$md-width - 1px})
+    @content
+=sm
+  @media (max-width: #{$sm-width - 1px})
+    @content
+=xs
+  @media (max-width: #{$xs-width - 1px})
+    @content
