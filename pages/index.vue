@@ -14,6 +14,20 @@
       el-carousel-item(v-for='i in 3' :key='i')
         img.carousel-img(:src='require(`~/assets/images/homepage/${i}.jpg`)')
 
+    h3 Подробнее
+    p.desc
+      | Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse
+      | convallis neque vitae facilisis malesuada. Quisque fringilla a nisi nec suscipit.
+      | Maecenas bibendum tincidunt enim vel tristique. Maecenas ornare felis at metus
+      | semper pharetra. Donec sed tellus justo. Aliquam ut dictum elit. Suspendisse diam est,
+      | interdum feugiat felis id, commodo posuere ante. Nunc pretium accumsan tincidunt.
+      br
+      br
+      | Duis posuere vel ex tincidunt semper. In tempor urna urna, ac suscipit sapien eleifend ut.
+      | Sed dictum venenatis justo, in elementum lacus efficitur vel. Duis sed enim maximus,
+      | fermentum tortor in, lobortis lorem. Quisque posuere, ante a lacinia laoreet,
+      | tortor arcu scelerisque eros, ullamcorper commodo ex lacus a urna.
+
     el-timeline
       el-timeline-item(v-for='(point, i) in points' :key='i'
         :type='point.type' :timestamp='point.timestamp') {{ point.content }}
@@ -76,8 +90,11 @@ export default {
 </script>
 
 <style lang='sass' scoped>
+  h3,
   .desc,
-  .el-carousel
+  .el-carousel,
+  .el-timeline,
+  .el-collapse
     margin-top: 2rem
 
   .desc
@@ -87,18 +104,13 @@ export default {
   .el-carousel
     border-radius: .5rem
     box-shadow: 0 2px 4px rgba(0, 0, 0, .12), 0 0 6px rgba(0, 0, 0, .04)
+    margin-bottom: 3rem
 
   .carousel-img
     width: 100%
     max-height: 100%
     object-fit: cover
 
-  .el-timeline
-    margin: 3rem 0 2rem
-
   .faq
     padding: 0 10rem
-
-    h3
-      margin-bottom: 2rem
 </style>
