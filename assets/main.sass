@@ -19,3 +19,11 @@ h1
 
 h3
   font-size: 2rem
+
+.clearfix::before,
+.clearfix::after
+  display: table
+  content: ''
+
+.clearfix::after
+  clear: both
