@@ -58,7 +58,22 @@
             | Consistent with real life: in line with the process and
             | logic of real life, and comply with languages and habits
             | that the users are used to
+
+    .rate
+      h4 Была ли статья полезной?
+      el-rate(v-model='rate' :colors='rateColors')
 </template>
+
+<script lang='ts'>
+export default {
+  data () {
+    return {
+      rate: null,
+      rateColors: ['#99A9BF', '#F7BA2A', '#FF9900']
+    }
+  }
+}
+</script>
 
 <style lang='sass' scoped>
   h3,
@@ -86,4 +101,11 @@
 
   .faq
     padding: 0 10rem
+
+  .rate
+    margin-top: 5rem
+    text-align: center
+
+    .el-rate
+      margin-top: .7rem
 </style>
