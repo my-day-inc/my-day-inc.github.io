@@ -1,7 +1,7 @@
 <template lang='pug'>
 el-card
   .clearfix(slot='header')
-    span {{ name }}
+    span.name {{ name }}
     el-button(v-if='btnTxt' type='danger' @click='btnCb') {{ btnTxt }}
 
   .list-item(v-if='data.phone')
@@ -43,11 +43,11 @@ export default {
   .el-card
     margin-bottom: 2rem
 
-    &:last-child
-      margin-bottom: 0
-
   .clearfix
     font-weight: 700
+
+    .name
+      font-size: 1.1rem
 
   .el-button
     float: right
@@ -55,7 +55,7 @@ export default {
     font-weight: 700
 
   .list-item
-    font-size: 14px
+    font-size: 1rem
     margin-bottom: 18px
 
     i
