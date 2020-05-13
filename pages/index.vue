@@ -17,6 +17,31 @@
     el-timeline
       el-timeline-item(v-for='(point, i) in points' :key='i'
         :type='point.type' :timestamp='point.timestamp') {{ point.content }}
+
+    .faq
+      h3 Остались вопросы?
+
+      el-collapse
+        el-collapse-item(title='Вопрос' name='1')
+          p
+            | Consistent with real life: in line with the process and
+            | logic of real life, and comply with languages and habits
+            | that the users are used to
+        el-collapse-item(title='Еще вопрос' name='2')
+          p
+            | Consistent with real life: in line with the process and
+            | logic of real life, and comply with languages and habits
+            | that the users are used to
+        el-collapse-item(title='Тупой вопрос' name='3')
+          p
+            | Consistent with real life: in line with the process and
+            | logic of real life, and comply with languages and habits
+            | that the users are used to
+        el-collapse-item(title='Для тупорылых' name='4')
+          p
+            | Consistent with real life: in line with the process and
+            | logic of real life, and comply with languages and habits
+            | that the users are used to
 </template>
 
 <script lang='ts'>
@@ -67,4 +92,13 @@ export default {
     width: 100%
     max-height: 100%
     object-fit: cover
+
+  .el-timeline
+    margin: 3rem 0 2rem
+
+  .faq
+    padding: 0 10rem
+
+    h3
+      margin-bottom: 2rem
 </style>
