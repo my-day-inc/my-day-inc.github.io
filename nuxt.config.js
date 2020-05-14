@@ -45,7 +45,9 @@ export default {
     // Doc: https://github.com/nuxt-community/stylelint-module
     '@nuxtjs/stylelint-module',
     // https://github.com/nuxt-community/style-resources-module
-    '@nuxtjs/style-resources'
+    '@nuxtjs/style-resources',
+    // https://nuxt-typed-vuex.danielcroe.com/
+    'nuxt-typed-vuex'
   ],
   /*
   ** Nuxt.js modules
@@ -79,7 +81,10 @@ export default {
   ** Build configuration
   */
   build: {
-    transpile: [/^element-ui/],
+    transpile: [
+      /^element-ui/,
+      /typed-vuex/
+    ],
     /*
     ** You can extend webpack config here
     */

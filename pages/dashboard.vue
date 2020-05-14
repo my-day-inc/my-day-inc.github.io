@@ -25,38 +25,21 @@
 </template>
 
 <script lang='ts'>
+import Vue from 'vue'
+import { Contact } from '~/types'
 import ContactsCard from '~/components/Cards/ContactsCard.vue'
 
-export default {
+export default Vue.extend({
   components: {
     ContactsCard
   },
 
-  data () {
-    return {
-      contacts: [
-        {
-          id: '1',
-          name: 'Костик Хыпищев',
-          phone: '+7 (074) 153 49-94',
-          email: 'kostya@mail.su'
-        },
-        {
-          id: '2',
-          name: 'Натка Верепеева',
-          phone: '+7 (074) 153 49-94',
-          email: 'nata@yahoo.eu'
-        },
-        {
-          id: '3',
-          name: 'Витя Гершев',
-          phone: '+7 (074) 153 49-94',
-          email: 'v1t3k@gmail.com'
-        }
-      ]
+  computed: {
+    contacts (): Contact[] {
+      return this.$accessor.contacts.entries
     }
   }
-}
+})
 </script>
 
 <style lang='sass' scoped>

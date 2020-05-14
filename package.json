@@ -29,6 +29,7 @@
     "@types/vuelidate": "^0.7.13",
     "element-ui": "^2.4.11",
     "nuxt": "^2.0.0",
+    "nuxt-typed-vuex": "^0.1.18",
     "v-mask": "^2.1.0",
     "vuelidate": "^0.7.5"
   },

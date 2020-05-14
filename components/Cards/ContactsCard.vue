@@ -34,7 +34,7 @@ import {
   minLength, maxLength, numeric, required
 } from 'vuelidate/lib/validators'
 import AppCard from './AppCard.vue'
-import { Contact, ContactsAction } from '~/types'
+import { Contact, ContactAction } from '~/types'
 
 export default Vue.extend({
   components: { AppCard },
@@ -48,7 +48,7 @@ export default Vue.extend({
     actionType: {
       type: String,
       default: 'add'
-    } as PropOptions<ContactsAction>
+    } as PropOptions<ContactAction>
   },
 
   data () {
@@ -109,15 +109,15 @@ export default Vue.extend({
     action (): void {
       switch (this.actionType) {
         case 'add':
-          this.addContact()
+          this.addEntry()
           break
         case 'delete':
-          this.deleteContact()
+          this.deleteEntry()
           break
       }
     },
 
-    addContact (): void {
+    addEntry (): void {
       if (this.$v.newContactId.$invalid) {
         this.$message.error('Заполните ID контакта!')
       } else {
@@ -130,12 +130,12 @@ export default Vue.extend({
       }
     },
 
-    deleteContact (): void {
+    async deleteEntry (): Promise<void> {
+      const { contact } = this
       this.isLoading = true
-      setTimeout(() => {
-        this.$message.success(`Контакт "${this.contact.name}" удален.`)
-        this.isLoading = false
-      }, 1000)
+      await this.$accessor.contacts.deleteEntry(contact!.id)
+      this.$message.success(`Контакт "${contact!.name}" удален.`)
+      this.isLoading = false
     }
   }
 })
