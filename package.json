@@ -26,9 +26,11 @@
   "dependencies": {
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^3.0.0-0",
+    "@types/vuelidate": "^0.7.13",
     "element-ui": "^2.4.11",
     "nuxt": "^2.0.0",
-    "v-mask": "^2.1.0"
+    "v-mask": "^2.1.0",
+    "vuelidate": "^0.7.5"
   },
   "devDependencies": {
     "@nuxt/typescript-build": "^0.6.6",

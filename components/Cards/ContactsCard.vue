@@ -1,5 +1,6 @@
 <template lang='pug'>
-AppCard(:name='contactsName'
+AppCard(v-loading='isLoading'
+        :name='contactsName'
         :action-text='actionText'
         :button-type='buttonType'
         @action='action')
@@ -29,6 +30,9 @@ AppCard(:name='contactsName'
 
 <script lang='ts'>
 import Vue, { PropOptions } from 'vue'
+import {
+  minLength, maxLength, numeric, required
+} from 'vuelidate/lib/validators'
 import AppCard from './AppCard.vue'
 import { Contact, ContactsAction } from '~/types'
 
@@ -49,7 +53,17 @@ export default Vue.extend({
 
   data () {
     return {
+      isLoading: false,
       newContactId: this.actionType === 'add' ? '' : null
+    }
+  },
+
+  validations: {
+    newContactId: {
+      minLength: minLength(6),
+      maxLength: maxLength(6),
+      numeric,
+      required
     }
   },
 
@@ -104,9 +118,16 @@ export default Vue.extend({
     },
 
     addContact (): void {
-      // eslint-disable-next-line
-      console.log(`Contact added: ${this.newContactId}`)
-      this.newContactId = ''
+      if (this.$v.newContactId.$invalid) {
+        this.$message.error('Заполните ID контакта!')
+      } else {
+        this.isLoading = true
+        setTimeout(() => {
+          this.$message.success(`Контакт ${this.newContactId} добавлен.`)
+          this.newContactId = ''
+          this.isLoading = false
+        }, 1000)
+      }
     },
 
     deleteContact (): void {
