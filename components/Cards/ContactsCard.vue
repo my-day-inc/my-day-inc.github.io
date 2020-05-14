@@ -1,39 +1,32 @@
 <template lang='pug'>
 el-card
   .clearfix(slot='header')
-    span.name {{ name }}
-    el-button(v-if='btnTxt' type='danger' @click='btnCb') {{ btnTxt }}
+    span.name {{ contact.name }}
+    el-button(type='danger'
+              @click='$emit("action", contact)') {{ actionText }}
 
-  .list-item(v-if='data.phone')
+  .list-item
     i.el-icon-phone
     el-link(type='info'
-            :href='`tel:${data.phone}`'
-            target='_blank') {{ data.phone }}
-  .list-item(v-if='data.email')
+            :href='`tel:${contact.phone}`'
+            target='_blank') {{ contact.phone }}
+  .list-item
     i.el-icon-s-custom
     el-link(type='info'
-            :href='`mailto:${data.email}`'
-            target='_blank') {{ data.email }}
+            :href='`mailto:${contact.email}`'
+            target='_blank') {{ contact.email }}
 </template>
 
 <script lang='ts'>
 export default {
   props: {
-    name: {
-      type: String,
+    contact: {
+      type: Object,
       required: true
     },
-    btnTxt: {
+    actionText: {
       type: String,
       default: null
-    },
-    btnCb: {
-      type: Function,
-      default: () => {}
-    },
-    data: {
-      type: Object,
-      default: () => ({})
     }
   }
 }

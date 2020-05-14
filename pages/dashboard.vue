@@ -9,11 +9,10 @@
         el-col
           el-container(direction='vertical')
             h3 Контакты
-            ContactsCard(v-for='(c, i) in contacts'
-                         :key='i'
-                         :name='c.name'
-                         :data='c.data'
-                         btn-txt='Удалить')
+            ContactsCard(v-for='(c, i) in contacts' :key='i'
+                         :contact='c'
+                         action-text='Удалить'
+                         @action='deleteContact')
 
         el-col
           el-container(direction='vertical')
@@ -37,26 +36,26 @@ export default {
       contacts: [
         {
           name: 'Костик Хыпищев',
-          data: {
-            phone: '+7 (074) 153 49-94',
-            email: 'kostya@mail.su'
-          }
+          phone: '+7 (074) 153 49-94',
+          email: 'kostya@mail.su'
         },
         {
           name: 'Натка Верепеева',
-          data: {
-            phone: '+7 (074) 153 49-94',
-            email: 'nata@yahoo.eu'
-          }
+          phone: '+7 (074) 153 49-94',
+          email: 'nata@yahoo.eu'
         },
         {
           name: 'Витя Гершев',
-          data: {
-            phone: '+7 (074) 153 49-94',
-            email: 'v1t3k@gmail.com'
-          }
+          phone: '+7 (074) 153 49-94',
+          email: 'v1t3k@gmail.com'
         }
       ]
+    }
+  },
+
+  methods: {
+    deleteContact (contact: object): void {
+      console.log(`Contact deleted: ${contact.name}`)
     }
   }
 }
