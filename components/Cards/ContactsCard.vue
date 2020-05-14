@@ -1,12 +1,18 @@
 <template lang='pug'>
 AppCard(:name='contactsName'
         :action-text='actionText'
-        :action-type='actionType'
         :button-type='buttonType'
         @action='action')
   template(#body)
     div(v-if='isAdd')
-      input(v-model='newContactId')
+      el-input(v-model='newContactId'
+               v-mask='"######"'
+               :minlength='6'
+               :maxlength='6'
+               placeholder='ID контакта'
+               inputmode='numeric'
+               show-word-limit
+               clearable)
 
     div(v-else)
       .list-item
@@ -100,6 +106,7 @@ export default Vue.extend({
     addContact (): void {
       // eslint-disable-next-line
       console.log(`Contact added: ${this.newContactId}`)
+      this.newContactId = ''
     },
 
     deleteContact (): void {
