@@ -131,8 +131,11 @@ export default Vue.extend({
     },
 
     deleteContact (): void {
-      // eslint-disable-next-line
-      console.log(`Contact deleted: ${this.contact!.name}`)
+      this.isLoading = true
+      setTimeout(() => {
+        this.$message.success(`Контакт "${this.contact.name}" удален.`)
+        this.isLoading = false
+      }, 1000)
     }
   }
 })
