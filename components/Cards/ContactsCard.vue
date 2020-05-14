@@ -1,19 +1,23 @@
 <template lang='pug'>
 AppCard(:name='contact.name'
         :action-text='actionText'
+        :action-type='actionType'
         :button-type='buttonType'
         @action='action')
   template(#body)
-    .list-item
-      i.el-icon-phone
-      el-link(type='info'
-              :href='phoneLink'
-              target='_blank') {{ contact.phone }}
-    .list-item
-      i.el-icon-s-custom
-      el-link(type='info'
-              :href='emailLink'
-              target='_blank') {{ contact.email }}
+    div(v-if='isAdd') Add placeholder
+
+    div(v-else-if='isDelete')
+      .list-item
+        i.el-icon-phone
+        el-link(type='info'
+                :href='phoneLink'
+                target='_blank') {{ contact.phone }}
+      .list-item
+        i.el-icon-s-custom
+        el-link(type='info'
+                :href='emailLink'
+                target='_blank') {{ contact.email }}
 </template>
 
 <script lang='ts'>
@@ -21,24 +25,33 @@ import Vue, { PropOptions } from 'vue'
 import AppCard from './AppCard.vue'
 import { Contact, ContactsAction } from '~/types'
 
+const emptyContact: Contact = {
+  id: '',
+  name: '',
+  phone: '',
+  email: ''
+}
+
 export default Vue.extend({
   components: { AppCard },
 
   props: {
     contact: {
       type: Object,
-      default: (): Contact => ({
-        id: '',
-        name: '',
-        phone: '',
-        email: ''
-      })
+      default: () => ({ ...emptyContact })
     } as PropOptions<Contact>,
 
     actionType: {
       type: String,
       default: 'add'
     } as PropOptions<ContactsAction>
+  },
+
+  data () {
+    return {
+      newContact: this.actionType === 'add'
+        ? { ...this.contact } : null as Contact | null
+    }
   },
 
   computed: {
@@ -61,9 +74,15 @@ export default Vue.extend({
     phoneLink (): string {
       return `tel:${this.contact.phone}`
     },
-
     emailLink (): string {
       return `mailto:${this.contact.email}`
+    },
+
+    isAdd (): boolean {
+      return this.actionType === 'add'
+    },
+    isDelete (): boolean {
+      return this.actionType === 'delete'
     }
   },
 
