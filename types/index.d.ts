@@ -4,3 +4,5 @@ export interface Contact {
   phone: string;
   email: string;
 }
+
+export type ContactsAction = 'add' | 'delete'

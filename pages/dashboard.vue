@@ -9,10 +9,11 @@
         el-col
           el-container(direction='vertical')
             h3.subhead Контакты
-            ContactsCard(v-for='c in contacts' :key='c.id'
+            ContactsCard
+            ContactsCard(v-for='c in contacts'
+                         :key='c.id'
                          :contact='c'
-                         action-text='Удалить'
-                         @action='deleteContact')
+                         action-type='delete')
 
         el-col
           el-container(direction='vertical')
@@ -25,7 +26,6 @@
 
 <script lang='ts'>
 import ContactsCard from '~/components/Cards/ContactsCard.vue'
-import { Contact } from '~/types/intefaces'
 
 export default {
   components: {
@@ -54,12 +54,6 @@ export default {
           email: 'v1t3k@gmail.com'
         }
       ]
-    }
-  },
-
-  methods: {
-    deleteContact (contact: Contact): void {
-      console.log(`Contact deleted: ${contact.name}`)
     }
   }
 }

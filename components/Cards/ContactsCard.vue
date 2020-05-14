@@ -1,7 +1,8 @@
 <template lang='pug'>
 AppCard(:name='contact.name'
         :action-text='actionText'
-        @action='$emit("action", contact)')
+        :button-type='buttonType'
+        @action='action')
   template(#body)
     .list-item
       i.el-icon-phone
@@ -16,31 +17,81 @@ AppCard(:name='contact.name'
 </template>
 
 <script lang='ts'>
+import Vue, { PropOptions } from 'vue'
 import AppCard from './AppCard.vue'
+import { Contact, ContactsAction } from '~/types'
 
-export default {
+export default Vue.extend({
   components: { AppCard },
 
   props: {
     contact: {
       type: Object,
-      required: true
-    },
-    actionText: {
+      default: (): Contact => ({
+        id: '',
+        name: '',
+        phone: '',
+        email: ''
+      })
+    } as PropOptions<Contact>,
+
+    actionType: {
       type: String,
-      required: true
-    }
+      default: 'add'
+    } as PropOptions<ContactsAction>
   },
 
   computed: {
+    actionText (): string {
+      const texts = {
+        add: 'Добавить',
+        delete: 'Удалить'
+      }
+      return texts[this.actionType]
+    },
+
+    buttonType (): string {
+      const types = {
+        add: 'primary',
+        delete: 'danger'
+      }
+      return types[this.actionType]
+    },
+
     phoneLink (): string {
       return `tel:${this.contact.phone}`
     },
+
     emailLink (): string {
       return `mailto:${this.contact.email}`
     }
+  },
+
+  methods: {
+    action (): void {
+      switch (this.actionType) {
+        case 'add':
+          this.addContact()
+          break
+        case 'delete':
+          this.deleteContact()
+          break
+      }
+    },
+
+    addContact (): void {
+      const { contact } = this
+      // eslint-disable-next-line
+      console.log(`Contact added: ${contact.name}`)
+    },
+
+    deleteContact (): void {
+      const { contact } = this
+      // eslint-disable-next-line
+      console.log(`Contact deleted: ${contact.name}`)
+    }
   }
-}
+})
 </script>
 
 <style lang='sass' scoped>

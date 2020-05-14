@@ -2,7 +2,7 @@
 el-card
   .card-header(slot='header')
     span.card-name {{ name }}
-    el-button(type='danger'
+    el-button(:type='buttonType'
               @click='$emit("action")') {{ actionText }}
 
   slot(name='body')
@@ -16,6 +16,10 @@ export default {
       required: true
     },
     actionText: {
+      type: String,
+      required: true
+    },
+    buttonType: {
       type: String,
       required: true
     }
