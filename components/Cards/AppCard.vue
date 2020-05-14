@@ -1,9 +1,7 @@
 <template lang='pug'>
 el-card
   .card-header(slot='header')
-    span(v-if='isAdd').card-name Add placeholder
-    span(v-else-if='isDelete').card-name {{ name }}
-
+    span.card-name {{ name }}
     el-button(:type='buttonType'
               @click='$emit("action")') {{ actionText }}
 
@@ -11,10 +9,7 @@ el-card
 </template>
 
 <script lang='ts'>
-import Vue, { PropOptions } from 'vue'
-import { ContactsAction } from '~/types'
-
-export default Vue.extend({
+export default {
   props: {
     name: {
       type: String,
@@ -26,26 +21,12 @@ export default Vue.extend({
       required: true
     },
 
-    actionType: {
-      type: String,
-      required: true
-    } as PropOptions<ContactsAction>,
-
     buttonType: {
       type: String,
       required: true
     }
-  },
-
-  computed: {
-    isAdd (): boolean {
-      return this.actionType === 'add'
-    },
-    isDelete (): boolean {
-      return this.actionType === 'delete'
-    }
   }
-})
+}
 </script>
 
 <style lang='sass' scoped>

@@ -1,13 +1,14 @@
 <template lang='pug'>
-AppCard(:name='contact.name'
+AppCard(:name='contactsName'
         :action-text='actionText'
         :action-type='actionType'
         :button-type='buttonType'
         @action='action')
   template(#body)
-    div(v-if='isAdd') Add placeholder
+    div(v-if='isAdd')
+      input(v-model='newContactId')
 
-    div(v-else-if='isDelete')
+    div(v-else)
       .list-item
         i.el-icon-phone
         el-link(type='info'
@@ -25,21 +26,14 @@ import Vue, { PropOptions } from 'vue'
 import AppCard from './AppCard.vue'
 import { Contact, ContactsAction } from '~/types'
 
-const emptyContact: Contact = {
-  id: '',
-  name: '',
-  phone: '',
-  email: ''
-}
-
 export default Vue.extend({
   components: { AppCard },
 
   props: {
     contact: {
       type: Object,
-      default: () => ({ ...emptyContact })
-    } as PropOptions<Contact>,
+      default: null
+    } as PropOptions<Contact | null>,
 
     actionType: {
       type: String,
@@ -49,12 +43,15 @@ export default Vue.extend({
 
   data () {
     return {
-      newContact: this.actionType === 'add'
-        ? { ...this.contact } : null as Contact | null
+      newContactId: this.actionType === 'add' ? '' : null
     }
   },
 
   computed: {
+    contactsName (): string {
+      return this.contact?.name ?? 'Новый контакт'
+    },
+
     actionText (): string {
       const texts = {
         add: 'Добавить',
@@ -71,18 +68,20 @@ export default Vue.extend({
       return types[this.actionType]
     },
 
-    phoneLink (): string {
-      return `tel:${this.contact.phone}`
-    },
-    emailLink (): string {
-      return `mailto:${this.contact.email}`
-    },
-
     isAdd (): boolean {
       return this.actionType === 'add'
     },
     isDelete (): boolean {
       return this.actionType === 'delete'
+    },
+
+    phoneLink (): string | null {
+      return this.isAdd
+        ? null : `tel:${this.contact!.phone}`
+    },
+    emailLink (): string | null {
+      return this.isAdd
+        ? null : `mailto:${this.contact!.email}`
     }
   },
 
@@ -99,15 +98,13 @@ export default Vue.extend({
     },
 
     addContact (): void {
-      const { contact } = this
       // eslint-disable-next-line
-      console.log(`Contact added: ${contact.name}`)
+      console.log(`Contact added: ${this.newContactId}`)
     },
 
     deleteContact (): void {
-      const { contact } = this
       // eslint-disable-next-line
-      console.log(`Contact deleted: ${contact.name}`)
+      console.log(`Contact deleted: ${this.contact!.name}`)
     }
   }
 })
