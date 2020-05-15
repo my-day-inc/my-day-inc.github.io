@@ -49,7 +49,7 @@ interface AddedEntry {
 export const actions = actionTree({ state }, {
   addEntry ({ state, commit }, { name, body, period }: AddedEntry): void {
     const entries = [...state[period]]
-    const id = entries[entries.length - 1].id + 1
+    const id = entries.length ? entries[entries.length - 1].id + 1 : 1
     const date = (new Date()).toLocaleDateString('en-US')
     entries.push({ id, name, body, date })
 

@@ -15,17 +15,18 @@ AppCard(v-loading='isLoading'
       el-input(v-model='newTaskBody'
                :minlength='2'
                :maxlength='140'
+               :rows='2'
+               :autosize='{ minRows: 2, maxRows: 3 }'
                type='textarea'
-               placeholder='Задача'
-               autosize
+               placeholder='Описание'
                show-word-limit
                clearable)
 
     div(v-else)
       .list-item
-        i.el-icon-phone
+        span.date {{ task.date }}
       .list-item
-        i.el-icon-s-custom
+        p.body {{ task.body }}
 </template>
 
 <script lang='ts'>
@@ -82,7 +83,7 @@ export default Vue.extend({
 
     actionText (): string {
       const texts = {
-        add: 'Добавить',
+        add: 'Создать',
         delete: 'Удалить'
       }
       return texts[this.actionType]
@@ -90,7 +91,7 @@ export default Vue.extend({
 
     buttonType (): string {
       const types = {
-        add: 'primary',
+        add: 'success',
         delete: 'danger'
       }
       return types[this.actionType]
@@ -120,7 +121,7 @@ export default Vue.extend({
       if (this.$v.newTaskName.$invalid) {
         this.$message.error('Заполните название задачи!')
       } else if (this.$v.newTaskBody.$invalid) {
-        this.$message.error('Опишите задачу!')
+        this.$message.error('Заполните описание задачи!')
       } else {
         const { newTaskName, newTaskBody } = this
         this.isLoading = true
@@ -151,6 +152,9 @@ export default Vue.extend({
 </script>
 
 <style lang='sass' scoped>
+  .el-textarea
+    margin-top: 1rem
+
   .list-item
     font-size: 1rem
     margin-bottom: 18px
@@ -158,6 +162,7 @@ export default Vue.extend({
     i
       font-size: 1rem
 
-    .el-link
-      margin-left: 10px
+  .date
+    font-style: italic
+    color: #909399
 </style>

@@ -151,4 +151,5 @@ export default Vue.extend({
 
     .el-link
       margin-left: 10px
+      font-size: 1rem
 </style>

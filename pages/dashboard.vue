@@ -27,6 +27,12 @@
         el-col
           el-container(direction='vertical')
             h3.subhead Месяц
+            TaskCard(period='month')
+            TaskCard(v-for='t in tasksMonth'
+                     :key='t.id'
+                     :task='t'
+                     period='month'
+                     action-type='delete')
 </template>
 
 <script lang='ts'>
@@ -47,7 +53,10 @@ export default Vue.extend({
     },
 
     tasksWeek (): Task[] {
-      return this.$accessor.tasks.week
+      return this.$accessor.tasks.week.slice().reverse()
+    },
+    tasksMonth (): Task[] {
+      return this.$accessor.tasks.month.slice().reverse()
     }
   }
 })
