@@ -18,6 +18,11 @@
         el-col
           el-container(direction='vertical')
             h3.subhead Неделя
+            TaskCard
+            TaskCard(v-for='t in tasksWeek'
+                     :key='t.id'
+                     :task='t'
+                     action-type='delete')
 
         el-col
           el-container(direction='vertical')
@@ -26,17 +31,23 @@
 
 <script lang='ts'>
 import Vue from 'vue'
-import { Contact } from '~/types'
+import { Contact, Task } from '~/types'
 import ContactsCard from '~/components/Cards/ContactsCard.vue'
+import TaskCard from '~/components/Cards/TaskCard.vue'
 
 export default Vue.extend({
   components: {
-    ContactsCard
+    ContactsCard,
+    TaskCard
   },
 
   computed: {
     contacts (): Contact[] {
       return this.$accessor.contacts.entries
+    },
+
+    tasksWeek (): Task[] {
+      return this.$accessor.tasks.week
     }
   }
 })

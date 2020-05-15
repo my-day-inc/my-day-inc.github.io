@@ -1,6 +1,6 @@
 <template lang='pug'>
 AppCard(v-loading='isLoading'
-        :name='contactsName'
+        :name='contactName'
         :action-text='actionText'
         :button-type='buttonType'
         @action='action')
@@ -34,7 +34,7 @@ import {
   minLength, maxLength, numeric, required
 } from 'vuelidate/lib/validators'
 import AppCard from './AppCard.vue'
-import { Contact, ContactAction } from '~/types'
+import { Contact, CardAction } from '~/types'
 
 export default Vue.extend({
   components: { AppCard },
@@ -48,7 +48,7 @@ export default Vue.extend({
     actionType: {
       type: String,
       default: 'add'
-    } as PropOptions<ContactAction>
+    } as PropOptions<CardAction>
   },
 
   data () {
@@ -68,7 +68,7 @@ export default Vue.extend({
   },
 
   computed: {
-    contactsName (): string {
+    contactName (): string {
       return this.contact?.name ?? 'Новый контакт'
     },
 

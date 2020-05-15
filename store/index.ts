@@ -2,6 +2,7 @@ import { getAccessorType } from 'nuxt-typed-vuex'
 
 // Import all your submodules
 import * as contacts from '~/store/contacts'
+import * as tasks from '~/store/tasks'
 
 // Keep your existing vanilla Vuex code for state, getters, mutations, actions, plugins, etc.
 // ...
@@ -14,6 +15,7 @@ export const accessorType = getAccessorType({
   // actions,
   modules: {
     // The key (submodule) needs to match the Nuxt namespace (e.g. ~/store/submodule.ts)
-    contacts
+    contacts,
+    tasks
   }
 })

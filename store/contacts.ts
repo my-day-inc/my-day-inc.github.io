@@ -31,7 +31,7 @@ export const mutations = mutationTree(state, {
 })
 
 export const actions = actionTree({ state }, {
-  deleteEntry ({ state, commit }, id: string) {
+  deleteEntry ({ state, commit }, id: string): void {
     const entries = state.entries.filter((e: Contact) => e.id !== id)
     commit('SET_ENTRIES', entries)
   }

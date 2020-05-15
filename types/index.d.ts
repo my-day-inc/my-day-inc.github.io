@@ -12,11 +12,18 @@ declare module '@nuxt/types' {
   }
 }
 
-// Contacts
+// Cards
+export type CardAction = 'add' | 'delete'
 export interface Contact {
   id: string;
   name: string;
   phone: string;
   email: string;
 }
-export type ContactAction = 'add' | 'delete'
+export interface Task {
+  id: number;
+  name: string;
+  body: string;
+  date: string;
+}
+export type TaskPeriod = 'week' | 'month'
