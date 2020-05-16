@@ -10,7 +10,7 @@ el-form(label-position='top'
              autofocus
              clearable)
 
-  el-form-item(label='Пароль')
+  el-form-item(v-if='!isRecover' label='Пароль')
     el-input(v-model='authData.password'
              prefix-icon='el-icon-key'
              placeholder='Введите пароль'
@@ -20,21 +20,29 @@ el-form(label-position='top'
              clearable
              show-password)
 
-  el-form-item(v-if='isNotRecover')
+  el-form-item(v-if='!isRecover')
     el-checkbox(v-model='authData.isRemember'
                 label='Запомнить меня')
 
   el-form-item
     el-button(type='primary'
               @click='$emit("submit", authData)') {{ buttonText }}
+
+  AppLink(v-if='!isRecover' to='/auth/recover') Забыли пароль?
+  AppLink(v-if='isSignIn || isRecover' to='/auth/signup') Регистрация
+  AppLink(v-if='isSignUp || isRecover' to='/auth/signin') Вход
 </template>
 
 <script lang='ts'>
 import Vue, { PropOptions } from 'vue'
 import { AuthData } from '~/types'
-type FormType = 'signin' | 'signup' | 'recover'
+import AppLink from '~/components/AppLink.vue'
+
+type FormType = 'signIn' | 'signUp' | 'recover'
 
 export default Vue.extend({
+  components: { AppLink },
+
   props: {
     formType: {
       type: String,
@@ -55,16 +63,27 @@ export default Vue.extend({
   computed: {
     buttonText (): string {
       const texts = {
-        signin: 'Войти',
-        signup: 'Зарегистрироваться',
+        signIn: 'Войти',
+        signUp: 'Зарегистрироваться',
         recover: 'Восстановить'
       }
       return texts[this.formType]
     },
 
-    isNotRecover (): boolean {
-      return this.formType !== 'recover'
+    isSignIn (): boolean {
+      return this.formType === 'signIn'
+    },
+    isSignUp (): boolean {
+      return this.formType === 'signUp'
+    },
+    isRecover (): boolean {
+      return this.formType === 'recover'
     }
   }
 })
 </script>
+
+<style lang='sass' scoped>
+  .el-link
+    margin-right: 1rem
+</style>

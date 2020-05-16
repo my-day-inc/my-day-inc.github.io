@@ -3,7 +3,7 @@ div
   h1 Вход
 
   AppAuthContainer
-    AppAuthForm(form-type='signin'
+    AppAuthForm(form-type='signIn'
                 @submit='signIn')
 </template>
 
