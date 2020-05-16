@@ -27,3 +27,10 @@ export interface Task {
   date: string;
 }
 export type TaskPeriod = 'week' | 'month'
+
+// Auth
+export interface AuthData {
+  email: string;
+  password: string;
+  isRemember: boolean;
+}
