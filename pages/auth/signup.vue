@@ -1,7 +1,7 @@
 <template lang='pug'>
 h1 Регистрация
 
-  AppAuthContainer
+  AppAuthContainer(image='street')
     AppAuthForm(form-type='signUp'
                 @submit='signUp')
 </template>

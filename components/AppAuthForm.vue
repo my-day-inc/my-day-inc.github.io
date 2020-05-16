@@ -28,9 +28,9 @@ el-form(label-position='top'
     el-button(type='primary'
               @click='$emit("submit", authData)') {{ buttonText }}
 
-  AppLink(v-if='!isRecover' to='/auth/recover') Забыли пароль?
-  AppLink(v-if='isSignIn || isRecover' to='/auth/signup') Регистрация
-  AppLink(v-if='isSignUp || isRecover' to='/auth/signin') Вход
+  AppLink(v-if='isSignIn' to='/auth/recover') Забыли пароль?
+  AppLink(v-if='!isSignUp' to='/auth/signup') Регистрация
+  AppLink(v-if='!isSignIn' to='/auth/signin') Вход
 </template>
 
 <script lang='ts'>

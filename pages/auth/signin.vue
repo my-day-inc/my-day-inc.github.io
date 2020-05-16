@@ -2,7 +2,7 @@
 div
   h1 Вход
 
-  AppAuthContainer
+  AppAuthContainer(image='houses')
     AppAuthForm(form-type='signIn'
                 @submit='signIn')
 </template>

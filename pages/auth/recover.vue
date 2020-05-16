@@ -2,7 +2,7 @@
 div
   h1 Восстановление
 
-  AppAuthContainer
+  AppAuthContainer(image='park')
     AppAuthForm(form-type='recover'
                 @submit='recover')
 </template>

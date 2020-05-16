@@ -10,9 +10,20 @@ el-row.app-form-container(type='flex'
         slot
       el-col(:span='15').hidden-sm-and-down
         el-image.app-form-image(
-          :src='require("~/assets/images/common/street.svg")'
+          :src='require(`~/assets/images/auth/${image}.svg`)'
           fit='cover')
 </template>
+
+<script lang='ts'>
+export default {
+  props: {
+    image: {
+      type: String,
+      required: true
+    }
+  }
+}
+</script>
 
 <style lang='sass' scoped>
   .app-form
