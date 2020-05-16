@@ -14,21 +14,13 @@ el-menu(:default-active='path'
     i.el-icon-menu
     span(slot='title') Планировщик
 
-  el-menu-item(disabled)
+  el-menu-item(index='/docs' disabled)
     i.el-icon-s-order
     span(slot='title') Документы
 
-  el-menu-item(disabled)
+  el-menu-item(index='/reports' disabled)
     i.el-icon-s-marketing
     span(slot='title') Отчеты
-
-  el-menu-item(disabled)
-    i.el-icon-share
-    span(slot='title') Контакты
-
-  el-menu-item(disabled)
-    i.el-icon-s-cooperation
-    span(slot='title') Компания
 
   el-menu-item(index='/me/settings')
     i.el-icon-s-tools
