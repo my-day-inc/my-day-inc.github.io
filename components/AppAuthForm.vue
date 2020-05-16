@@ -1,17 +1,18 @@
 <template lang='pug'>
-el-form(label-position='top'
-        :model='authData')
-  el-form-item(label='Email')
-    el-input(v-model='authData.email'
+el-form(label-position='top')
+  el-form-item(label='Почта')
+    el-input(v-model='email'
              prefix-icon='el-icon-user'
-             placeholder='Введите email'
+             placeholder='Введите почту'
+             type='email'
              :minlength='5'
              :maxlength='128'
              autofocus
              clearable)
 
-  el-form-item(v-if='!isRecover' label='Пароль')
-    el-input(v-model='authData.password'
+  el-form-item(v-if='!isRecover'
+               label='Пароль')
+    el-input(v-model='password'
              prefix-icon='el-icon-key'
              placeholder='Введите пароль'
              type='password'
@@ -20,13 +21,13 @@ el-form(label-position='top'
              clearable
              show-password)
 
-  el-form-item(v-if='!isRecover')
-    el-checkbox(v-model='authData.isRemember'
+  el-form-item(v-if='isSignIn')
+    el-checkbox(v-model='isRemember'
                 label='Запомнить меня')
 
   el-form-item
     el-button(type='primary'
-              @click='$emit("submit", authData)') {{ buttonText }}
+              @click='submit') {{ buttonText }}
 
   AppLink(v-if='isSignIn' to='/auth/recover') Забыли пароль?
   AppLink(v-if='!isSignUp' to='/auth/signup') Регистрация
@@ -35,6 +36,9 @@ el-form(label-position='top'
 
 <script lang='ts'>
 import Vue, { PropOptions } from 'vue'
+import {
+  minLength, maxLength, required, email
+} from 'vuelidate/lib/validators'
 import { AuthData } from '~/types'
 import AppLink from '~/components/AppLink.vue'
 
@@ -52,12 +56,30 @@ export default Vue.extend({
 
   data () {
     return {
-      authData: {
-        email: '',
-        password: '',
-        isRemember: false
-      } as AuthData
+      email: '',
+      password: '',
+      isRemember: false
     }
+  },
+
+  validations () {
+    const rules: any = {
+      email: {
+        required,
+        email,
+        minLength: minLength(5),
+        maxLength: maxLength(128)
+      }
+    }
+
+    if (!this.isRecover) {
+      rules.password = {
+        required,
+        minLength: minLength(6),
+        maxLength: maxLength(16)
+      }
+    }
+    return rules
   },
 
   computed: {
@@ -78,6 +100,33 @@ export default Vue.extend({
     },
     isRecover (): boolean {
       return this.formType === 'recover'
+    }
+  },
+
+  methods: {
+    submit (): void {
+      const authData: AuthData = {
+        email: this.email,
+        password: this.password,
+        isRemember: this.isRemember
+      }
+
+      if (!this.$v.$invalid) {
+        this.$emit('submit', authData)
+        return
+      }
+
+      const { email, password } = this.$v
+
+      if (!email.required || !email.email) {
+        this.$message.error('Введите почту')
+      } else if (!email.maxLength || !email.minLength) {
+        this.$message.error('Почта должна быть от 5 до 128 символов')
+      } else if (!password.required) {
+        this.$message.error('Введите пароль')
+      } else if (!password.maxLength || !password.minLength) {
+        this.$message.error('Пароль должен быть от 6 до 16 символов')
+      }
     }
   }
 })

@@ -42,10 +42,6 @@ import ContactsCard from '~/components/Cards/ContactsCard.vue'
 import TaskCard from '~/components/Cards/TaskCard.vue'
 
 export default Vue.extend({
-  head: {
-    title: 'Планировщик'
-  },
-
   components: {
     ContactsCard,
     TaskCard
@@ -62,6 +58,10 @@ export default Vue.extend({
     tasksMonth (): Task[] {
       return this.$accessor.tasks.month.slice().reverse()
     }
+  },
+
+  head: {
+    title: 'Планировщик'
   }
 })
 </script>

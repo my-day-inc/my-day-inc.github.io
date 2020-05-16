@@ -1,6 +1,6 @@
 <template lang='pug'>
 div
-  h1 My Day
+  h1 Мой день
 
   p.desc
     | Lorem ipsum dolor sit amet, consectetur adipiscing elit.

@@ -13,10 +13,6 @@ import AppAuthContainer from '~/components/containers/AppAuthContainer.vue'
 import AppAuthForm from '~/components/AppAuthForm.vue'
 
 export default {
-  head: {
-    title: 'Вход'
-  },
-
   components: {
     AppAuthContainer,
     AppAuthForm
@@ -24,8 +20,13 @@ export default {
 
   methods: {
     signIn (authData: AuthData): void {
+      // eslint-disable-next-line
       console.log(authData)
     }
+  },
+
+  head: {
+    title: 'Вход'
   }
 }
 </script>
