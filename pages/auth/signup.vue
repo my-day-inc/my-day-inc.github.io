@@ -12,6 +12,10 @@ import AppAuthContainer from '~/components/containers/AppAuthContainer.vue'
 import AppAuthForm from '~/components/AppAuthForm.vue'
 
 export default {
+  head: {
+    title: 'Регистрация'
+  },
+
   components: {
     AppAuthContainer,
     AppAuthForm

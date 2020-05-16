@@ -1,6 +1,6 @@
 <template lang='pug'>
 div
-  h1 Домашняя страница
+  h1 My Day
 
   p.desc
     | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
