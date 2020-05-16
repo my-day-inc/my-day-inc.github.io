@@ -1,38 +1,38 @@
 <template lang='pug'>
-  div
-    h1 Планировщик
+div
+  h1 Планировщик
 
-    .dashboard
-      el-row.cols(type='flex'
-                  justify='space-between'
-                  :gutter='32')
-        el-col
-          el-container(direction='vertical')
-            h3.subhead Контакты
-            ContactsCard
-            ContactsCard(v-for='c in contacts'
-                         :key='c.id'
-                         :contact='c'
-                         action-type='delete')
+  .dashboard
+    el-row.cols(type='flex'
+                justify='space-between'
+                :gutter='32')
+      el-col
+        el-container(direction='vertical')
+          h3.subhead Контакты
+          ContactsCard
+          ContactsCard(v-for='c in contacts'
+                       :key='c.id'
+                       :contact='c'
+                       action-type='delete')
 
-        el-col
-          el-container(direction='vertical')
-            h3.subhead Неделя
-            TaskCard
-            TaskCard(v-for='t in tasksWeek'
-                     :key='t.id'
-                     :task='t'
-                     action-type='delete')
+      el-col
+        el-container(direction='vertical')
+          h3.subhead Неделя
+          TaskCard
+          TaskCard(v-for='t in tasksWeek'
+                   :key='t.id'
+                   :task='t'
+                   action-type='delete')
 
-        el-col
-          el-container(direction='vertical')
-            h3.subhead Месяц
-            TaskCard(period='month')
-            TaskCard(v-for='t in tasksMonth'
-                     :key='t.id'
-                     :task='t'
-                     period='month'
-                     action-type='delete')
+      el-col
+        el-container(direction='vertical')
+          h3.subhead Месяц
+          TaskCard(period='month')
+          TaskCard(v-for='t in tasksMonth'
+                   :key='t.id'
+                   :task='t'
+                   period='month'
+                   action-type='delete')
 </template>
 
 <script lang='ts'>

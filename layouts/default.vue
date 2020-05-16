@@ -1,13 +1,13 @@
 <template lang='pug'>
-  el-container
-    el-aside(width='calc(84px + 2rem)')
-      AppSidebar
+el-container
+  el-aside(width='calc(84px + 2rem)')
+    AppSidebar
 
-    el-container
-      el-main
-        el-row
-          el-col.content
-            nuxt
+  el-container
+    el-main
+      el-row
+        el-col.content
+          nuxt
 </template>
 
 <script lang='ts'>

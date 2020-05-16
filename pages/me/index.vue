@@ -1,5 +1,5 @@
 <template lang='pug'>
-  h1 Аккаунт
+h1 Аккаунт
 </template>
 
 <script lang='ts'>
