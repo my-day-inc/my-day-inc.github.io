@@ -32,7 +32,8 @@ export default {
   plugins: [
     '~/plugins/element-ui',
     '~/plugins/v-mask',
-    '~/plugins/vuelidate'
+    '~/plugins/vuelidate',
+    '~/plugins/userbase'
   ],
   /*
   ** Nuxt.js dev-modules
