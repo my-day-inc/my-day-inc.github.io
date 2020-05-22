@@ -1,3 +1,4 @@
+import { Userbase } from 'nuxt-userbase-module/types'
 import { accessorType } from '~/store'
 
 // Accessor
@@ -9,6 +10,13 @@ declare module 'vue/types/vue' {
 declare module '@nuxt/types' {
   interface NuxtAppOptions {
     $accessor: typeof accessorType
+  }
+}
+
+// Userbase
+declare module '@nuxt/types' {
+  interface Context {
+    $userbase: Userbase
   }
 }
 

@@ -1,4 +1,3 @@
-
 export default {
   mode: 'spa',
   /*
@@ -47,7 +46,9 @@ export default {
     // https://github.com/nuxt-community/style-resources-module
     '@nuxtjs/style-resources',
     // https://nuxt-typed-vuex.danielcroe.com/
-    'nuxt-typed-vuex'
+    'nuxt-typed-vuex',
+    // https://github.com/ceigh/nuxt-userbase-module
+    'nuxt-userbase-module'
   ],
   /*
   ** Nuxt.js modules
@@ -70,6 +71,12 @@ export default {
     typeCheck: {
       eslint: true
     }
+  },
+  /*
+  ** Userbase configuration
+  */
+  userbase: {
+    appId: '123'
   },
   /*
   ** Common resources
