@@ -7969,9 +7969,12 @@ nuxt-typed-vuex@^0.1.18:
     normalize-path "^3.0.0"
     typed-vuex "0.1.18"
 
-"nuxt-userbase-module@link:/home/ceigh/Work/nuxt-userbase-module":
-  version "0.0.0"
-  uid ""
+nuxt-userbase-module@^0.2.0:
+  version "0.2.0"
+  resolved "https://registry.yarnpkg.com/nuxt-userbase-module/-/nuxt-userbase-module-0.2.0.tgz#a3ff723870b92a3aad52f9e9488f2db500d8f90d"
+  integrity sha512-dDKQeVes9Q2qTzjPnIZoIYHxsz/kA4GW3+Uk1ZLjW1vJWIHMrBO8VfdliXEIvGq/Yy4C+KeGzw03w/F0efcxSQ==
+  dependencies:
+    userbase-js latest
 
 nuxt@^2.0.0:
   version "2.12.2"
