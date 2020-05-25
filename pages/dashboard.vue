@@ -37,7 +37,7 @@ div
 
 <script lang='ts'>
 import Vue from 'vue'
-import { Contact, Task } from '~/types'
+import { Contact, Task } from '~/types/dashboard'
 import ContactsCard from '~/components/Cards/ContactsCard.vue'
 import TaskCard from '~/components/Cards/TaskCard.vue'
 

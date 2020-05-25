@@ -7,7 +7,7 @@ h1 Регистрация
 </template>
 
 <script lang='ts'>
-import { AuthData } from '~/types'
+import { AuthData } from '~/types/auth'
 import AppAuthContainer from '~/components/containers/AppAuthContainer.vue'
 import AppAuthForm from '~/components/AppAuthForm.vue'
 

@@ -33,7 +33,7 @@ AppCard(v-loading='isLoading'
 import Vue, { PropOptions } from 'vue'
 import { minLength, maxLength, required } from 'vuelidate/lib/validators'
 import AppCard from './AppCard.vue'
-import { Task, CardAction, TaskPeriod } from '~/types'
+import { Task, CardAction, TaskPeriod } from '~/types/dashboard'
 
 export default Vue.extend({
   components: { AppCard },

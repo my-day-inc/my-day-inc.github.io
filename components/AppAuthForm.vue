@@ -39,7 +39,7 @@ import Vue, { PropOptions } from 'vue'
 import {
   minLength, maxLength, required, email
 } from 'vuelidate/lib/validators'
-import { AuthData } from '~/types'
+import { AuthData } from '~/types/auth'
 import AppLink from '~/components/AppLink.vue'
 
 type FormType = 'signIn' | 'signUp' | 'recover'

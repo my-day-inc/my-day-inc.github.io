@@ -1,5 +1,5 @@
 import { mutationTree, actionTree } from 'typed-vuex'
-import { Task, TaskPeriod } from '~/types'
+import { Task, TaskPeriod } from '~/types/dashboard'
 
 export const state = () => ({
   week: [

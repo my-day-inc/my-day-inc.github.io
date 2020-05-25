@@ -1,5 +1,5 @@
 import { mutationTree, actionTree } from 'typed-vuex'
-import { Contact } from '~/types'
+import { Contact } from '~/types/dashboard'
 
 export const state = () => ({
   entries: [

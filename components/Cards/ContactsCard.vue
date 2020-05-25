@@ -34,7 +34,7 @@ import {
   minLength, maxLength, numeric, required
 } from 'vuelidate/lib/validators'
 import AppCard from './AppCard.vue'
-import { Contact, CardAction } from '~/types'
+import { Contact, CardAction } from '~/types/dashboard'
 
 export default Vue.extend({
   components: { AppCard },
