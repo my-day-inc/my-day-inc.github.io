@@ -4,6 +4,6 @@ h1 Настройки
 
 <script lang='ts'>
 export default {
-  middleware: 'authenticated'
+  middleware: 'notAuthenticated'
 }
 </script>

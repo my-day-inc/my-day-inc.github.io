@@ -7,25 +7,32 @@ h1 Регистрация
 </template>
 
 <script lang='ts'>
+import Vue from 'vue'
 import { AuthData } from '~/types/auth'
 import AppAuthContainer from '~/components/containers/AppAuthContainer.vue'
 import AppAuthForm from '~/components/AppAuthForm.vue'
 
-export default {
+export default Vue.extend({
+  middleware: 'authenticated',
+
   components: {
     AppAuthContainer,
     AppAuthForm
   },
 
   methods: {
-    signUp (authData: AuthData): void {
-      // eslint-disable-next-line
-      console.log(authData)
+    async signUp (authData: AuthData): Promise<void> {
+      try {
+        await this.$accessor.user.signUp(authData)
+        this.$router.push('/me')
+      } catch (e) {
+        this.$message.error(`Ошибка: ${e}`)
+      }
     }
   },
 
   head: {
     title: 'Регистрация'
   }
-}
+})
 </script>

@@ -1,9 +1,18 @@
 <template lang='pug'>
-h1 Аккаунт
+div
+  h1 Аккаунт
+  p {{ userInfo }}
 </template>
 
 <script lang='ts'>
-export default {
-  middleware: 'authenticated'
-}
+import Vue from 'vue'
+export default Vue.extend({
+  middleware: 'notAuthenticated',
+
+  computed: {
+    userInfo () {
+      return this.$accessor.user.userInfo
+    }
+  }
+})
 </script>

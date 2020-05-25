@@ -1,7 +1,7 @@
 import { Context } from '@nuxt/types'
 
 export default ({ redirect, app: { $accessor } }: Context) => {
-  if ($accessor.user.isAuthenticated) {
-    return redirect('/me')
+  if (!$accessor.user.isAuthenticated) {
+    return redirect('/auth/signin')
   }
 }
