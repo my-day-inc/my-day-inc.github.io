@@ -71,6 +71,15 @@ export const actions = actionTree({ state }, {
     this.app.$accessor.user.reset()
   },
 
+  async recover (_, authData): Promise<void> {
+    const { $userbase } = this.app.context
+
+    await $userbase.forgotPassword({
+      username: authData.email
+    })
+    console.log('Forgot password')
+  },
+
   reset ({ commit }): void {
     commit('SET_AUTHENTICATED', false)
     commit('SET_USER_INFO', {})
