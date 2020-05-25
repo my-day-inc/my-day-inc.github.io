@@ -27,7 +27,7 @@ el-menu(:default-active='path'
     span(slot='title') Настройки
 
   el-menu-item(v-if='isAuthenticated' @click='signOut')
-    i.el-icon-caret-left
+    i.el-icon-error
     span(slot='title') Выйти
 </template>
 
@@ -49,6 +49,7 @@ export default Vue.extend({
       try {
         await this.$accessor.user.signOut()
         this.$router.push('/')
+        this.$message('Вы вышли из аккаунта')
       } catch (e) {
         this.$message.error(e.message)
       }
