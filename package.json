@@ -7,8 +7,7 @@
   "scripts": {
     "dev": "nuxt-ts",
     "generate": "nuxt-ts generate",
-    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
-    "test": "jest"
+    "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore ."
   },
   "lint-staged": {
     "*.{js,vue}": "yarn lint",
@@ -21,9 +20,7 @@
   },
   "dependencies": {
     "@nuxt/typescript-runtime": "^0.4.7",
-    "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^3.0.0-0",
-    "@types/vuelidate": "^0.7.13",
     "element-ui": "^2.4.11",
     "nuxt": "^2.0.0",
     "nuxt-typed-vuex": "^0.1.18",
@@ -36,12 +33,10 @@
     "@nuxtjs/eslint-module": "^1.0.0",
     "@nuxtjs/style-resources": "^1.0.0",
     "@nuxtjs/stylelint-module": "^3.1.0",
-    "@vue/test-utils": "^1.0.0-beta.27",
-    "babel-jest": "^24.1.0",
+    "@types/vuelidate": "^0.7.13",
     "eslint": "^6.1.0",
     "eslint-plugin-nuxt": ">=0.4.2",
     "husky": "^4.0.0",
-    "jest": "^24.1.0",
     "lint-staged": "^10.0.0",
     "node-sass": "^4.14.1",
     "nuxt-userbase-module": "^0.3.1",
@@ -49,8 +44,7 @@
     "pug-plain-loader": "^1.0.0",
     "sass-loader": "^8.0.2",
     "stylelint": "^10.1.0",
-    "stylelint-config-sass-guidelines": "^7.0.0",
-    "vue-jest": "^4.0.0-0"
+    "stylelint-config-sass-guidelines": "^7.0.0"
   },
   "eslintConfig": {
     "env": {
@@ -63,6 +57,15 @@
     "ignorePatterns": [
       "sw.js"
     ]
+  },
+  "stylelint": {
+    "extends": "stylelint-config-sass-guidelines",
+    "rules": {
+      "order/properties-alphabetical-order": null,
+      "block-opening-brace-space-before": null,
+      "declaration-block-trailing-semicolon": "never",
+      "number-leading-zero": "never"
+    }
   },
   "babel": {
     "env": {
@@ -78,36 +81,6 @@
           ]
         ]
       }
-    }
-  },
-  "jest": {
-    "moduleNameMapper": {
-      "^@/(.*)$": "<rootDir>/$1",
-      "^~/(.*)$": "<rootDir>/$1",
-      "^vue$": "vue/dist/vue.common.js"
-    },
-    "moduleFileExtensions": [
-      "js",
-      "vue",
-      "json"
-    ],
-    "transform": {
-      "^.+\\.js$": "babel-jest",
-      ".*\\.(vue)$": "vue-jest"
-    },
-    "collectCoverage": true,
-    "collectCoverageFrom": [
-      "<rootDir>/components/**/*.vue",
-      "<rootDir>/pages/**/*.vue"
-    ]
-  },
-  "stylelint": {
-    "extends": "stylelint-config-sass-guidelines",
-    "rules": {
-      "order/properties-alphabetical-order": null,
-      "block-opening-brace-space-before": null,
-      "declaration-block-trailing-semicolon": "never",
-      "number-leading-zero": "never"
     }
   }
 }

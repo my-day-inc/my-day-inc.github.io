@@ -19,7 +19,6 @@
       "~/*": ["./*"]
     },
     "types": [
-      "@types/node",
       "@nuxt/types"
     ]
   },
