@@ -3,14 +3,10 @@
   "version": "1.0.0",
   "description": "Social diary",
   "author": "Artjom Löbsack",
-  "contributors": [
-    "Daniil Prudnikov",
-    "Vladislav Chernyavskiy"
-  ],
   "private": true,
   "scripts": {
-    "dev": "nuxt",
-    "generate": "nuxt generate",
+    "dev": "nuxt-ts",
+    "generate": "nuxt-ts generate",
     "lint": "eslint --ext .ts,.js,.vue --ignore-path .gitignore .",
     "test": "jest"
   },
@@ -24,6 +20,7 @@
     }
   },
   "dependencies": {
+    "@nuxt/typescript-runtime": "^0.4.7",
     "@nuxtjs/axios": "^5.3.6",
     "@nuxtjs/pwa": "^3.0.0-0",
     "@types/vuelidate": "^0.7.13",
