@@ -3,7 +3,8 @@ div
   h1 Вход
 
   AppAuthContainer(image='houses')
-    AppAuthForm(form-type='signIn'
+    AppAuthForm(v-loading='isLoading'
+                form-type='signIn'
                 @submit='signIn')
 </template>
 
@@ -21,13 +22,22 @@ export default Vue.extend({
     AppAuthForm
   },
 
+  data () {
+    return {
+      isLoading: false
+    }
+  },
+
   methods: {
     async signIn (authData: AuthData): Promise<void> {
       try {
+        this.isLoading = true
         await this.$accessor.user.signIn(authData)
         this.$router.push('/me')
       } catch (e) {
         this.$message.error(e.message)
+      } finally {
+        this.isLoading = false
       }
     }
   },

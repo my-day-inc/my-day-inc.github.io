@@ -2,7 +2,8 @@
 h1 Регистрация
 
   AppAuthContainer(image='street')
-    AppAuthForm(form-type='signUp'
+    AppAuthForm(v-loading='isLoading'
+                form-type='signUp'
                 @submit='signUp')
 </template>
 
@@ -20,13 +21,22 @@ export default Vue.extend({
     AppAuthForm
   },
 
+  data () {
+    return {
+      isLoading: false
+    }
+  },
+
   methods: {
     async signUp (authData: AuthData): Promise<void> {
       try {
+        this.isLoading = true
         await this.$accessor.user.signUp(authData)
         this.$router.push('/me')
       } catch (e) {
         this.$message.error(e.message)
+      } finally {
+        this.isLoading = false
       }
     }
   },
