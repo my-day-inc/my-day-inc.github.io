@@ -29,8 +29,10 @@ export const actions = actionTree({ state }, {
     if (session.user) {
       commit('SET_AUTHENTICATED', true)
       commit('SET_USER_INFO', session.user)
+      commit('SET_LAST_USED_USERNAME', session.user.username)
+    } else {
+      commit('SET_LAST_USED_USERNAME', session.lastUsedUsername ?? '')
     }
-    commit('SET_LAST_USED_USERNAME', session.lastUsedUsername ?? '')
   },
 
   async signUp ({ commit }, authData: AuthData): Promise<void> {
