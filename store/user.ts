@@ -4,7 +4,7 @@ import { AuthData } from '~/types/auth'
 export const state = () => ({
   isAuthenticated: false,
   userInfo: {},
-  lastUsedUsername: undefined
+  lastUsedUsername: ''
 })
 
 export const mutations = mutationTree(state, {
@@ -29,8 +29,8 @@ export const actions = actionTree({ state }, {
     if (session.user) {
       commit('SET_AUTHENTICATED', true)
       commit('SET_USER_INFO', session.user)
-      commit('SET_LAST_USED_USERNAME', session.lastUsedUsername)
     }
+    commit('SET_LAST_USED_USERNAME', session.lastUsedUsername ?? '')
   },
 
   async signUp ({ commit }, authData: AuthData): Promise<void> {
@@ -58,5 +58,19 @@ export const actions = actionTree({ state }, {
 
     commit('SET_AUTHENTICATED', true)
     commit('SET_USER_INFO', userInfo)
+  },
+
+  async signOut (): Promise<void> {
+    const { $userbase } = this.app.context
+
+    await $userbase.signOut()
+    console.log('Sign out')
+
+    this.app.$accessor.user.reset()
+  },
+
+  reset ({ commit }): void {
+    commit('SET_AUTHENTICATED', false)
+    commit('SET_USER_INFO', {})
   }
 })

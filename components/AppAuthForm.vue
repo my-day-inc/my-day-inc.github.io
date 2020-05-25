@@ -103,6 +103,12 @@ export default Vue.extend({
     }
   },
 
+  mounted () {
+    if (!this.isSignUp) {
+      this.email = this.$accessor.user.lastUsedUsername
+    }
+  },
+
   methods: {
     submit (): void {
       const authData: AuthData = {

@@ -27,7 +27,7 @@ export default Vue.extend({
         await this.$accessor.user.signIn(authData)
         this.$router.push('/me')
       } catch (e) {
-        this.$message.error(`Ошибка: ${e}`)
+        this.$message.error(e.message)
       }
     }
   },
