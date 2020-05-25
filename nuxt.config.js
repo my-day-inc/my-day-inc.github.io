@@ -29,6 +29,7 @@ export default {
   ** Plugins to load before mounting the App
   */
   plugins: [
+    '~/plugins/init',
     '~/plugins/element-ui',
     '~/plugins/v-mask',
     '~/plugins/vuelidate'
@@ -76,7 +77,7 @@ export default {
   ** Userbase configuration
   */
   userbase: {
-    appId: '123'
+    appId: 'd57716d0-d33f-4a84-9d85-39caff782c52'
   },
   /*
   ** Common resources

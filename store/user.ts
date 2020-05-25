@@ -1,26 +1,23 @@
 import { mutationTree, actionTree } from 'typed-vuex'
 
 export const state = () => ({
-  isAuthenticated: false,
-  login: ''
+  isAuthenticated: false
 })
 
 export const mutations = mutationTree(state, {
   SET_AUTHENTICATED (state, isAuthenticated: boolean) {
     state.isAuthenticated = isAuthenticated
-  },
-  SET_LOGIN (state, login: string) {
-    state.login = login
   }
 })
 
-interface LoginData {
-  login: string;
-  password: string;
-}
 export const actions = actionTree({ state }, {
-  signIn ({ commit }, { login }: LoginData): void {
-    commit('SET_LOGIN', login)
-    commit('SET_AUTHENTICATED', true)
+  async tryToAuth ({ commit }): Promise<void> {
+    const { $userbase } = this.app.context
+
+    const session = await $userbase.init()
+    console.log('Session: ', session) // eslint-disable-line
+    if (session.user) {
+      commit('SET_AUTHENTICATED', true)
+    }
   }
 })
