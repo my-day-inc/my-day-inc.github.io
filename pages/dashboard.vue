@@ -101,6 +101,36 @@ export default Vue.extend({
 <style lang='sass' scoped>
   .dashboard
     overflow: auto
+    +xl
+      padding: 0 1rem
+
+    &::before
+      display: none
+      content: ''
+      width: 1rem
+      height: calc(100% - 6rem)
+      position: absolute
+      right: 0
+      bottom: 0
+      background: linear-gradient(to left, #fff, transparent)
+      pointer-events: none
+      z-index: 1
+      +xl
+        display: block
+
+    &::after
+      display: none
+      content: ''
+      width: 1rem
+      height: calc(100% - 6rem)
+      position: absolute
+      left: 0
+      bottom: 0
+      background: linear-gradient(to right, #fff, transparent)
+      pointer-events: none
+      z-index: 1
+      +xl
+        display: block
 
   .cols
     margin-top: 3rem
