@@ -19,21 +19,33 @@ div
         el-container(direction='vertical')
           h3.subhead Эта неделя
           TaskCard
-          TaskCard(v-for='t in tasksWeek'
-                   :key='t.itemId'
-                   :itemId='t.itemId'
-                   :task='t.item'
-                   action-type='delete')
+          div(v-if='tasksWeek.length')
+            TaskCard(v-for='t in tasksWeek'
+                     :key='t.itemId'
+                     :itemId='t.itemId'
+                     :task='t.item'
+                     action-type='delete')
+          el-row.empty(v-else
+                       type='flex'
+                       justify='center'
+                       align='middle')
+            i.el-icon-success
 
       el-col
         el-container(direction='vertical')
           h3.subhead Позже
-          TaskCard(v-for='t in tasksLater'
-                   :key='t.itemId'
-                   :itemId='t.itemId'
-                   :task='t.item'
-                   period='later'
-                   action-type='delete')
+          div(v-if='tasksLater.length')
+            TaskCard(v-for='t in tasksLater'
+                     :key='t.itemId'
+                     :itemId='t.itemId'
+                     :task='t.item'
+                     period='later'
+                     action-type='delete')
+          el-row.empty(v-else
+                       type='flex'
+                       justify='center'
+                       align='middle')
+            i.el-icon-success
 </template>
 
 <script lang='ts'>
@@ -101,4 +113,11 @@ export default Vue.extend({
     margin-bottom: 2rem
     font-size: 1.5rem
     color: #c0c4cc
+
+  .empty
+    height: calc(100vh - 300px)
+
+    i
+      color: #ebeef5
+      font-size: 7rem
 </style>
