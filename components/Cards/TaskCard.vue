@@ -22,10 +22,11 @@ AppCard(v-loading='isLoading'
                show-word-limit
                clearable)
       el-date-picker(v-model='newTaskDate'
-                     type='date'
-                     placeholder='Дата'
                      :clearable='false'
-                     :editable='false')
+                     :editable='false'
+                     :pickerOptions='pickerOptions'
+                     type='date'
+                     format='dd.MM.yyyy')
 
     div(v-else)
       .list-item
@@ -70,7 +71,17 @@ export default Vue.extend({
       isLoading: false,
       newTaskName: '',
       newTaskBody: '',
-      newTaskDate: new Date()
+      newTaskDate: (() => {
+        const date = new Date()
+        date.setDate(date.getDate() + 1)
+        return date
+      })(),
+      pickerOptions: {
+        firstDayOfWeek: 1,
+        disabledDate (time: Date) {
+          return time.getTime() < Date.now()
+        }
+      }
     }
   },
 

@@ -28,7 +28,6 @@ div
       el-col
         el-container(direction='vertical')
           h3.subhead Позже
-          TaskCard(period='month')
           TaskCard(v-for='t in tasksLater'
                    :key='t.itemId'
                    :itemId='t.itemId'
