@@ -21,6 +21,11 @@ AppCard(v-loading='isLoading'
                placeholder='Описание'
                show-word-limit
                clearable)
+      el-date-picker(v-model='newTaskDate'
+                     type='date'
+                     placeholder='Дата'
+                     :clearable='false'
+                     :editable='false')
 
     div(v-else)
       .list-item
@@ -91,7 +96,8 @@ export default Vue.extend({
       return date.toLocaleString('ru-RU', {
         weekday: 'long',
         day: 'numeric',
-        month: 'short'
+        month: 'short',
+        year: this.period === 'week' ? undefined : 'numeric'
       })
     },
 
@@ -171,8 +177,12 @@ export default Vue.extend({
 </script>
 
 <style lang='sass' scoped>
-  .el-textarea
+  .el-textarea,
+  .el-date-editor
     margin-top: 1rem
+
+  .el-date-editor
+    width: 100%
 
   .list-item
     font-size: 1rem
