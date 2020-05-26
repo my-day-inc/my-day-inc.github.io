@@ -19,33 +19,43 @@ div
         el-container(direction='vertical')
           h3.subhead Эта неделя
           TaskCard
-          div(v-if='tasksWeek.length')
-            TaskCard(v-for='t in tasksWeek'
-                     :key='t.itemId'
-                     :itemId='t.itemId'
-                     :task='t.item'
-                     action-type='delete')
-          el-row.empty(v-else
-                       type='flex'
-                       justify='center'
-                       align='middle')
-            i.el-icon-success
+          content-placeholders(v-if='$fetchState.pending'
+                               :rounded='true')
+            content-placeholders-img(v-for='i in 10'
+                                     :key='i')
+          div(v-else)
+            div(v-if='tasksWeek.length')
+              TaskCard(v-for='t in tasksWeek'
+                       :key='t.itemId'
+                       :itemId='t.itemId'
+                       :task='t.item'
+                       action-type='delete')
+            el-row.empty(v-else
+                         type='flex'
+                         justify='center'
+                         align='middle')
+              i.el-icon-success
 
       el-col
         el-container(direction='vertical')
           h3.subhead Позже
-          div(v-if='tasksLater.length')
-            TaskCard(v-for='t in tasksLater'
-                     :key='t.itemId'
-                     :itemId='t.itemId'
-                     :task='t.item'
-                     period='later'
-                     action-type='delete')
-          el-row.empty(v-else
-                       type='flex'
-                       justify='center'
-                       align='middle')
-            i.el-icon-success
+          content-placeholders(v-if='$fetchState.pending'
+                               :rounded='true')
+            content-placeholders-img(v-for='i in 10'
+                                     :key='i')
+          div(v-else)
+            div(v-if='tasksLater.length')
+              TaskCard(v-for='t in tasksLater'
+                       :key='t.itemId'
+                       :itemId='t.itemId'
+                       :task='t.item'
+                       period='later'
+                       action-type='delete')
+            el-row.empty(v-else
+                         type='flex'
+                         justify='center'
+                         align='middle')
+              i.el-icon-success
 </template>
 
 <script lang='ts'>

@@ -32,7 +32,8 @@ export default {
     '~/plugins/init',
     '~/plugins/element-ui',
     '~/plugins/v-mask',
-    '~/plugins/vuelidate'
+    '~/plugins/vuelidate',
+    '~/plugins/vue-content-placeholders'
   ],
   /*
   ** Nuxt.js dev-modules
