@@ -1,5 +1,6 @@
 <template lang='pug'>
-el-menu(:default-active='path'
+el-menu(v-loading='isLoading'
+        :default-active='path'
         collapse
         router)
   el-menu-item(index='/')
@@ -35,6 +36,12 @@ el-menu(:default-active='path'
 import Vue from 'vue'
 
 export default Vue.extend({
+  data () {
+    return {
+      isLoading: false
+    }
+  },
+
   computed: {
     path (): string {
       return this.$route.path
@@ -46,6 +53,7 @@ export default Vue.extend({
 
   methods: {
     async signOut (): Promise<void> {
+      this.isLoading = true
       try {
         await this.$accessor.user.signOut()
         this.$router.push('/')
@@ -53,6 +61,7 @@ export default Vue.extend({
       } catch (e) {
         this.$message.error(e.message)
       }
+      this.isLoading = false
     }
   }
 })
