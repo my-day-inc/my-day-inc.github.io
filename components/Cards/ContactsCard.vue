@@ -119,11 +119,11 @@ export default Vue.extend({
 
     addEntry (): void {
       if (this.$v.newContactId.$invalid) {
-        this.$message.error('Заполните ID контакта!')
+        this.$message.error('Заполните ID контакта')
       } else {
         this.isLoading = true
         setTimeout(() => {
-          this.$message.success(`Контакт ${this.newContactId} добавлен.`)
+          this.$message.success(`Контакт ${this.newContactId} добавлен`)
           this.newContactId = ''
           this.isLoading = false
         }, 1000)
@@ -134,7 +134,7 @@ export default Vue.extend({
       const { contact } = this
       this.isLoading = true
       await this.$accessor.contacts.deleteEntry(contact!.id)
-      this.$message.success(`Контакт "${contact!.name}" удален.`)
+      this.$message.success(`Контакт "${contact!.name}" удален`)
       this.isLoading = false
     }
   }

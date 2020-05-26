@@ -150,9 +150,9 @@ export default Vue.extend({
 
     async addItem (): Promise<void> {
       if (this.$v.newTaskName.$invalid) {
-        this.$message.error('Заполните название задачи!')
+        this.$message.error('Заполните название задачи')
       } else if (this.$v.newTaskBody.$invalid) {
-        this.$message.error('Заполните описание задачи!')
+        this.$message.error('Заполните описание задачи')
       } else {
         const { newTaskBody, newTaskDate } = this
         const newTaskName = this.newTaskName.trim()
@@ -163,7 +163,7 @@ export default Vue.extend({
             body: newTaskBody.trim(),
             date: newTaskDate
           })
-          this.$message.success(`Задача "${newTaskName}" добавлена.`)
+          this.$message.success(`Задача "${newTaskName}" добавлена`)
           this.newTaskName = ''
           this.newTaskBody = ''
         } catch (e) {
@@ -177,7 +177,7 @@ export default Vue.extend({
       this.isLoading = true
       try {
         await this.$accessor.tasks.deleteItem(this.itemId!)
-        this.$message.success(`Задача "${this.task!.name}" удалена.`)
+        this.$message.success(`Задача "${this.task!.name}" удалена`)
       } catch (e) {
         this.$message.error(e.message)
       }
