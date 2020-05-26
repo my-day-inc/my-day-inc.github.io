@@ -49,6 +49,10 @@ export default Vue.extend({
     TaskCard
   },
 
+  async fetch () {
+    await this.$accessor.tasks.getItems()
+  },
+
   data () {
     return {
       week: (() => {
@@ -68,10 +72,10 @@ export default Vue.extend({
       return this.$accessor.tasks.items
     },
     tasksWeek (): Item<Task>[] {
-      return this.tasks.filter(t => t.item.date < this.week)
+      return this.tasks.filter(t => new Date(t.item.date) < this.week)
     },
     tasksLater (): Item<Task>[] {
-      return this.tasks.filter(t => t.item.date > this.week)
+      return this.tasks.filter(t => new Date(t.item.date) > this.week)
     }
   },
 

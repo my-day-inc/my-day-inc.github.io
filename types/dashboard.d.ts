@@ -11,7 +11,7 @@ export interface Contact {
 export interface Task {
   name: string
   body: string
-  date: Date
+  date: string
 }
 
 export type TaskPeriod = 'week' | 'later'
