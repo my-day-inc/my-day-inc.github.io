@@ -33,7 +33,7 @@ export default Vue.extend({
       try {
         this.isLoading = true
         await this.$accessor.user.recover(authData)
-        this.$router.push('/')
+        this.$router.push('/auth/signin')
         this.$message
           .success(`Временный пароль отправлен на ${authData.email}`)
       } catch (e) {

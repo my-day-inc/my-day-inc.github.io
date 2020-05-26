@@ -33,7 +33,7 @@ export default Vue.extend({
       try {
         this.isLoading = true
         await this.$accessor.user.signIn(authData)
-        this.$router.push('/me')
+        this.$router.push('/dashboard')
       } catch (e) {
         this.$message.error(e.message)
       } finally {

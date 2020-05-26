@@ -43,6 +43,8 @@ import ContactsCard from '~/components/Cards/ContactsCard.vue'
 import TaskCard from '~/components/Cards/TaskCard.vue'
 
 export default Vue.extend({
+  middleware: 'notAuthenticated',
+
   components: {
     ContactsCard,
     TaskCard
