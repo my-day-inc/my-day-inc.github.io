@@ -1,14 +1,15 @@
 import { mutationTree, actionTree } from 'typed-vuex'
+import { UserResult } from 'userbase-js/types'
 import { AuthData } from '~/types/auth'
 
 export const state = () => ({
-  isAuthenticated: false,
-  userInfo: {},
-  lastUsedUsername: ''
+  isAuthenticated: false as boolean,
+  userInfo: {} as UserResult,
+  lastUsedUsername: '' as string
 })
 
 export const mutations = mutationTree(state, {
-  SET_AUTHENTICATED (state, isAuthenticated: boolean) {
+  SET_AUTHENTICATED (state, isAuthenticated) {
     state.isAuthenticated = isAuthenticated
   },
   SET_USER_INFO (state, userInfo) {
@@ -24,7 +25,6 @@ export const actions = actionTree({ state }, {
     const { $userbase } = this.app.context
 
     const session = await $userbase.init()
-    // console.log('Session: ', session)
 
     if (session.user) {
       commit('SET_AUTHENTICATED', true)
@@ -42,7 +42,6 @@ export const actions = actionTree({ state }, {
       username: authData.email,
       password: authData.password
     })
-    // console.log('User: ', userInfo)
 
     commit('SET_AUTHENTICATED', true)
     commit('SET_USER_INFO', userInfo)
@@ -56,7 +55,6 @@ export const actions = actionTree({ state }, {
       password: authData.password,
       rememberMe: authData.isRemember ? 'local' : 'none'
     })
-    // console.log('User: ', userInfo)
 
     commit('SET_AUTHENTICATED', true)
     commit('SET_USER_INFO', userInfo)
@@ -66,7 +64,6 @@ export const actions = actionTree({ state }, {
     const { $userbase } = this.app.context
 
     await $userbase.signOut()
-    // console.log('Sign out')
 
     this.app.$accessor.user.reset()
   },
@@ -77,7 +74,6 @@ export const actions = actionTree({ state }, {
     await $userbase.forgotPassword({
       username: authData.email
     })
-    // console.log('Forgot password')
   },
 
   reset ({ commit }): void {

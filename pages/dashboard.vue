@@ -17,27 +17,29 @@ div
 
       el-col
         el-container(direction='vertical')
-          h3.subhead Неделя
+          h3.subhead Эта неделя
           TaskCard
           TaskCard(v-for='t in tasksWeek'
-                   :key='t.id'
-                   :task='t'
+                   :key='t.itemId'
+                   :itemId='t.itemId'
+                   :task='t.item'
                    action-type='delete')
 
       el-col
         el-container(direction='vertical')
-          h3.subhead Месяц
+          h3.subhead Позже
           TaskCard(period='month')
-          TaskCard(v-for='t in tasksMonth'
-                   :key='t.id'
-                   :task='t'
-                   period='month'
+          TaskCard(v-for='t in tasksLater'
+                   :key='t.itemId'
+                   :itemId='t.itemId'
+                   :task='t.item'
+                   period='later'
                    action-type='delete')
 </template>
 
 <script lang='ts'>
 import Vue from 'vue'
-import { Contact, Task } from '~/types/dashboard'
+import { Item, Contact, Task } from '~/types/dashboard'
 import ContactsCard from '~/components/Cards/ContactsCard.vue'
 import TaskCard from '~/components/Cards/TaskCard.vue'
 
@@ -47,16 +49,29 @@ export default Vue.extend({
     TaskCard
   },
 
+  data () {
+    return {
+      week: (() => {
+        const date = new Date()
+        date.setDate(date.getDate() + 7)
+        return date
+      })()
+    }
+  },
+
   computed: {
     contacts (): Contact[] {
       return this.$accessor.contacts.entries
     },
 
-    tasksWeek (): Task[] {
-      return this.$accessor.tasks.week.slice().reverse()
+    tasks (): Item<Task>[] {
+      return this.$accessor.tasks.items
     },
-    tasksMonth (): Task[] {
-      return this.$accessor.tasks.month.slice().reverse()
+    tasksWeek (): Item<Task>[] {
+      return this.tasks.filter(t => t.item.date < this.week)
+    },
+    tasksLater (): Item<Task>[] {
+      return this.tasks.filter(t => t.item.date > this.week)
     }
   },
 

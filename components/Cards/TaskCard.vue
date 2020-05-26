@@ -39,6 +39,11 @@ export default Vue.extend({
   components: { AppCard },
 
   props: {
+    itemId: {
+      type: String,
+      default: null
+    } as PropOptions<string | null>,
+
     task: {
       type: Object,
       default: null
@@ -59,7 +64,8 @@ export default Vue.extend({
     return {
       isLoading: false,
       newTaskName: '',
-      newTaskBody: ''
+      newTaskBody: '',
+      newTaskDate: new Date()
     }
   },
 
@@ -109,42 +115,47 @@ export default Vue.extend({
     action (): void {
       switch (this.actionType) {
         case 'add':
-          this.addEntry()
+          this.addItem()
           break
         case 'delete':
-          this.deleteEntry()
+          this.deleteItem()
           break
       }
     },
 
-    async addEntry (): Promise<void> {
+    async addItem (): Promise<void> {
       if (this.$v.newTaskName.$invalid) {
         this.$message.error('Заполните название задачи!')
       } else if (this.$v.newTaskBody.$invalid) {
         this.$message.error('Заполните описание задачи!')
       } else {
-        const { newTaskName, newTaskBody } = this
+        const { newTaskName, newTaskBody, newTaskDate } = this
         this.isLoading = true
-        await this.$accessor.tasks.addEntry({
-          name: newTaskName,
-          body: newTaskBody,
-          period: this.period
-        })
-        this.$message.success(`Задача "${newTaskName}" добавлена.`)
-        this.newTaskName = ''
-        this.newTaskBody = ''
+        try {
+          await this.$accessor.tasks.addItem({
+            name: newTaskName,
+            body: newTaskBody,
+            date: newTaskDate
+          })
+          this.$message.success(`Задача "${newTaskName}" добавлена.`)
+          this.newTaskName = ''
+          this.newTaskBody = ''
+          this.newTaskDate = new Date()
+        } catch (e) {
+          this.$message.error(e.message)
+        }
         this.isLoading = false
       }
     },
 
-    async deleteEntry (): Promise<void> {
-      const { task } = this
+    async deleteItem (): Promise<void> {
       this.isLoading = true
-      await this.$accessor.tasks.deleteEntry({
-        id: task!.id,
-        period: this.period
-      })
-      this.$message.success(`Задача "${task!.name}" удалена.`)
+      try {
+        await this.$accessor.tasks.deleteItem(this.itemId!)
+        this.$message.success(`Задача "${this.task!.name}" удалена.`)
+      } catch (e) {
+        this.$message.error(e.message)
+      }
       this.isLoading = false
     }
   }

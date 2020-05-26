@@ -1,6 +1,7 @@
-export type CardAction = 'add' | 'delete'
-export type TaskPeriod = 'week' | 'month'
-
+export interface Item<T> {
+  itemId: string
+  item: T
+}
 export interface Contact {
   id: string
   name: string
@@ -8,8 +9,10 @@ export interface Contact {
   email: string
 }
 export interface Task {
-  id: number
   name: string
   body: string
-  date: string
+  date: Date
 }
+
+export type TaskPeriod = 'week' | 'later'
+export type CardAction = 'add' | 'delete'
