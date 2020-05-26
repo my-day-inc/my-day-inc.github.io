@@ -129,18 +129,18 @@ export default Vue.extend({
       } else if (this.$v.newTaskBody.$invalid) {
         this.$message.error('Заполните описание задачи!')
       } else {
-        const { newTaskName, newTaskBody, newTaskDate } = this
+        const { newTaskBody, newTaskDate } = this
+        const newTaskName = this.newTaskName.trim()
         this.isLoading = true
         try {
           await this.$accessor.tasks.addItem({
             name: newTaskName,
-            body: newTaskBody,
+            body: newTaskBody.trim(),
             date: newTaskDate
           })
           this.$message.success(`Задача "${newTaskName}" добавлена.`)
           this.newTaskName = ''
           this.newTaskBody = ''
-          this.newTaskDate = new Date()
         } catch (e) {
           this.$message.error(e.message)
         }
