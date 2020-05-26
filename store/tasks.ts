@@ -41,5 +41,9 @@ export const actions = actionTree({ state }, {
     })
 
     commit('SET_ITEMS', state.items.filter(i => i.itemId !== itemId))
+  },
+
+  reset ({ commit }): void {
+    commit('SET_ITEMS', [])
   }
 })

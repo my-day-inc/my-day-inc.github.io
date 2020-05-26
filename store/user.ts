@@ -62,10 +62,12 @@ export const actions = actionTree({ state }, {
 
   async signOut (): Promise<void> {
     const { $userbase } = this.app.context
+    const { $accessor } = this.app
 
     await $userbase.signOut()
 
-    this.app.$accessor.user.reset()
+    $accessor.user.reset()
+    $accessor.tasks.reset()
   },
 
   async recover (_, authData): Promise<void> {
