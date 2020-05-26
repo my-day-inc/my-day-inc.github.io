@@ -24,7 +24,7 @@ AppCard(v-loading='isLoading'
 
     div(v-else)
       .list-item
-        span.date {{ task.date }}
+        span.date {{ taskDate }}
       .list-item
         p.body {{ task.body }}
 </template>
@@ -85,6 +85,14 @@ export default Vue.extend({
   computed: {
     taskName (): string {
       return this.task?.name ?? 'Новая задача'
+    },
+    taskDate (): string {
+      const date = new Date(this.task!.date)
+      return date.toLocaleString('ru-RU', {
+        weekday: 'long',
+        day: 'numeric',
+        month: 'short'
+      })
     },
 
     actionText (): string {
