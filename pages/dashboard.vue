@@ -73,6 +73,7 @@ export default Vue.extend({
   },
 
   async fetch () {
+    await this.$accessor.contacts.getItems()
     await this.$accessor.tasks.getItems()
   },
 
@@ -87,8 +88,8 @@ export default Vue.extend({
   },
 
   computed: {
-    contacts (): Contact[] {
-      return this.$accessor.contacts.entries
+    contacts (): Item<Contact>[] {
+      return this.$accessor.contacts.items
     },
 
     tasks (): Item<Task>[] {

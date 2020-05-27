@@ -3,7 +3,6 @@ export interface Item<T> {
   item: T
 }
 export interface Contact {
-  id: string
   name: string
   phone: string
   email: string
