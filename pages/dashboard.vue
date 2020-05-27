@@ -10,10 +10,16 @@ div
         el-container(direction='vertical')
           h3.subhead Контакты
           ContactsCard
-          ContactsCard(v-for='c in contacts'
-                       :key='c.id'
-                       :contact='c'
-                       action-type='delete')
+          content-placeholders(v-if='$fetchState.pending'
+                               :rounded='true')
+            content-placeholders-img(v-for='i in 10'
+                                     :key='i')
+          div(v-else)
+            ContactsCard(v-for='c in contacts'
+                         :key='c.itemId'
+                         :itemId='c.itemId'
+                         :contact='c.item'
+                         action-type='delete')
 
       el-col
         el-container(direction='vertical')

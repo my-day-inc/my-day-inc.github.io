@@ -6,14 +6,20 @@ AppCard(v-loading='isLoading'
         @action='action')
   template(#body)
     div(v-if='isAdd')
-      el-input(v-model='newContactId'
-               v-mask='"######"'
-               :minlength='6'
-               :maxlength='6'
-               placeholder='ID контакта'
-               inputmode='numeric'
+      el-input(v-model='newContactName'
+               :minlength='2'
+               :maxlength='15'
+               placeholder='Имя контакта'
                show-word-limit
                clearable)
+      el-input.margin(v-model='newContactEmail'
+                      placeholder='Email контакта'
+                      type='email'
+                      clearable)
+      el-input.margin(v-model='newContactPhone'
+                      placeholder='ID контакта'
+                      inputmode='numeric'
+                      clearable)
 
     div(v-else)
       .list-item
@@ -31,7 +37,7 @@ AppCard(v-loading='isLoading'
 <script lang='ts'>
 import Vue, { PropOptions } from 'vue'
 import {
-  minLength, maxLength, numeric, required
+  minLength, maxLength, required, email
 } from 'vuelidate/lib/validators'
 import AppCard from './AppCard.vue'
 import { Contact, CardAction } from '~/types/dashboard'
@@ -40,6 +46,11 @@ export default Vue.extend({
   components: { AppCard },
 
   props: {
+    itemId: {
+      type: String,
+      default: null
+    } as PropOptions<string | null>,
+
     contact: {
       type: Object,
       default: null
@@ -54,15 +65,23 @@ export default Vue.extend({
   data () {
     return {
       isLoading: false,
-      newContactId: this.actionType === 'add' ? '' : null
+      newContactName: '',
+      newContactPhone: '',
+      newContactEmail: ''
     }
   },
 
   validations: {
-    newContactId: {
-      minLength: minLength(6),
-      maxLength: maxLength(6),
-      numeric,
+    newContactName: {
+      minLength: minLength(2),
+      maxLength: maxLength(15),
+      required
+    },
+    newContactPhone: {
+      required
+    },
+    newContactEmail: {
+      email,
       required
     }
   },
@@ -109,32 +128,50 @@ export default Vue.extend({
     action (): void {
       switch (this.actionType) {
         case 'add':
-          this.addEntry()
+          this.addItem()
           break
         case 'delete':
-          this.deleteEntry()
+          this.deleteItem()
           break
       }
     },
 
-    addEntry (): void {
-      if (this.$v.newContactId.$invalid) {
-        this.$message.error('Заполните ID контакта')
+    async addItem (): Promise<void> {
+      if (this.$v.newContactName.$invalid) {
+        this.$message.error('Заполните имя контакта')
+      } else if (this.$v.newContactPhone.$invalid) {
+        this.$message.error('Заполните телефон контакта')
+      } else if (this.$v.newContactEmail.$invalid) {
+        this.$message.error('Заполните email контакта')
       } else {
         this.isLoading = true
-        setTimeout(() => {
-          this.$message.success(`Контакт ${this.newContactId} добавлен`)
-          this.newContactId = ''
-          this.isLoading = false
-        }, 1000)
+        let { newContactName } = this
+        newContactName = newContactName.trim()
+        try {
+          await this.$accessor.contacts.addItem({
+            name: newContactName,
+            phone: this.newContactPhone,
+            email: this.newContactEmail.trim()
+          })
+          this.$message.success(`Контакт ${newContactName} добавлен`)
+          this.newContactName = ''
+          this.newContactPhone = ''
+          this.newContactEmail = ''
+        } catch (e) {
+          this.$message.error(e.message)
+        }
+        this.isLoading = false
       }
     },
 
-    async deleteEntry (): Promise<void> {
-      const { contact } = this
+    async deleteItem (): Promise<void> {
       this.isLoading = true
-      await this.$accessor.contacts.deleteEntry(contact!.id)
-      this.$message.success(`Контакт "${contact!.name}" удален`)
+      try {
+        await this.$accessor.contacts.deleteItem(this.itemId!)
+        this.$message.success(`Контакт "${this.contact!.name}" удален`)
+      } catch (e) {
+        this.$message.error(e.message)
+      }
       this.isLoading = false
     }
   }
@@ -152,4 +189,7 @@ export default Vue.extend({
     .el-link
       margin-left: 10px
       font-size: 1rem
+
+  .margin
+    margin-top: 1rem
 </style>
