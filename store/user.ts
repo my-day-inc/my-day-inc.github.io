@@ -68,6 +68,7 @@ export const actions = actionTree({ state }, {
 
     $accessor.user.reset()
     $accessor.tasks.reset()
+    $accessor.contacts.reset()
   },
 
   async recover (_, authData): Promise<void> {
