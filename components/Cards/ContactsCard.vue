@@ -9,29 +9,34 @@ AppCard(v-loading='isLoading'
       el-input(v-model='newContactName'
                :minlength='2'
                :maxlength='15'
-               placeholder='Имя контакта'
+               placeholder='Имя'
                show-word-limit
                clearable)
       el-input.margin(v-model='newContactEmail'
-                      placeholder='Email контакта'
+                      placeholder='Email'
                       type='email'
+                      :minlength='5'
+                      :maxlength='128'
                       clearable)
+        i.el-input__icon.el-icon-s-custom(slot='prefix')
       el-input.margin(v-model='newContactPhone'
-                      placeholder='ID контакта'
+                      v-mask='"+7 (###) ### ##-##"'
+                      placeholder='Телефон'
                       inputmode='numeric'
                       clearable)
+        i.el-input__icon.el-icon-phone(slot='prefix')
 
     div(v-else)
-      .list-item
-        i.el-icon-phone
-        el-link(type='info'
-                :href='phoneLink'
-                target='_blank') {{ contact.phone }}
       .list-item
         i.el-icon-s-custom
         el-link(type='info'
                 :href='emailLink'
                 target='_blank') {{ contact.email }}
+      .list-item
+        i.el-icon-phone
+        el-link(type='info'
+                :href='phoneLink'
+                target='_blank') {{ contact.phone }}
 </template>
 
 <script lang='ts'>
@@ -73,16 +78,20 @@ export default Vue.extend({
 
   validations: {
     newContactName: {
+      required,
       minLength: minLength(2),
-      maxLength: maxLength(15),
-      required
+      maxLength: maxLength(15)
     },
     newContactPhone: {
-      required
+      required,
+      minLength: minLength(18),
+      maxLength: maxLength(18)
     },
     newContactEmail: {
+      required,
       email,
-      required
+      minLength: minLength(5),
+      maxLength: maxLength(128)
     }
   },
 
