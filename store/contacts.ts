@@ -1,38 +1,49 @@
 import { mutationTree, actionTree } from 'typed-vuex'
-import { Contact } from '~/types/dashboard'
+import { Item, Contact } from '~/types/dashboard'
 
 export const state = () => ({
-  entries: [
-    {
-      id: '1',
-      name: 'Костик Хыпищев',
-      phone: '+7 (074) 153 49-94',
-      email: 'kostya@mail.su'
-    },
-    {
-      id: '2',
-      name: 'Натка Верепеева',
-      phone: '+7 (074) 153 49-94',
-      email: 'nata@yahoo.eu'
-    },
-    {
-      id: '3',
-      name: 'Витя Гершев',
-      phone: '+7 (074) 153 49-94',
-      email: 'v1t3k@gmail.com'
-    }
-  ] as Contact[]
+  items: [] as Item<Contact>[]
 })
 
 export const mutations = mutationTree(state, {
-  SET_ENTRIES (state, entries: Contact[]) {
-    state.entries = entries
+  SET_ITEMS (state, items) {
+    state.items = items
   }
 })
 
 export const actions = actionTree({ state }, {
-  deleteEntry ({ state, commit }, id: string): void {
-    const entries = state.entries.filter((e: Contact) => e.id !== id)
-    commit('SET_ENTRIES', entries)
+  async getItems ({ commit }): Promise<void> {
+    const { $userbase } = this.app.context
+
+    await $userbase.openDatabase({
+      databaseName: 'contacts',
+      changeHandler: (items: Item<Contact>[]) => commit('SET_ITEMS', items)
+    })
+  },
+
+  async addItem (_, item: Contact): Promise<void> {
+    const { $userbase } = this.app.context
+
+    await $userbase.insertItem({
+      databaseName: 'contacts',
+      item
+    })
+
+    await this.app.$accessor.tasks.getItems()
+  },
+
+  async deleteItem ({ commit, state }, itemId: string): Promise<void> {
+    const { $userbase } = this.app.context
+
+    await $userbase.deleteItem({
+      databaseName: 'contacts',
+      itemId
+    })
+
+    commit('SET_ITEMS', state.items.filter(i => i.itemId !== itemId))
+  },
+
+  reset ({ commit }): void {
+    commit('SET_ITEMS', [])
   }
 })
