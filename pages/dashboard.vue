@@ -15,11 +15,17 @@ div
             content-placeholders-img(v-for='i in 10'
                                      :key='i')
           div(v-else)
-            ContactsCard(v-for='c in contacts'
-                         :key='c.itemId'
-                         :itemId='c.itemId'
-                         :contact='c.item'
-                         action-type='delete')
+            div(v-if='contacts.length')
+              ContactsCard(v-for='c in contacts'
+                           :key='c.itemId'
+                           :itemId='c.itemId'
+                           :contact='c.item'
+                           action-type='delete')
+            el-row.empty(v-else
+                         type='flex'
+                         justify='center'
+                         align='middle')
+              i.el-icon-user-solid
 
       el-col
         el-container(direction='vertical')
