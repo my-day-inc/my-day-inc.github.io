@@ -7,10 +7,6 @@ el-menu(v-loading='isLoading'
     i.el-icon-s-home
     span(slot='title') Домой
 
-  el-menu-item(index='/me')
-    i.el-icon-user-solid
-    span(slot='title') Аккаунт
-
   el-menu-item(index='/dashboard')
     i.el-icon-menu
     span(slot='title') Планировщик
@@ -23,7 +19,7 @@ el-menu(v-loading='isLoading'
     i.el-icon-s-marketing
     span(slot='title') Отчеты
 
-  el-menu-item(index='/me/settings')
+  el-menu-item(index='/settings')
     i.el-icon-s-tools
     span(slot='title') Настройки
 

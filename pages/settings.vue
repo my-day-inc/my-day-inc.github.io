@@ -1,7 +1,7 @@
 <template lang='pug'>
 div
-  h1 Аккаунт
-  p {{ userInfo }}
+  h1 Настройки
+  p.id {{ userInfo.userId }}
 </template>
 
 <script lang='ts'>
@@ -16,3 +16,8 @@ export default Vue.extend({
   }
 })
 </script>
+
+<style lang='sass' scoped>
+  .id
+    color: #c0c4cc
+</style>
