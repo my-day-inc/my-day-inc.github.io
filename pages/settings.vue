@@ -63,7 +63,8 @@ div
 
     el-col(:xs='24' :sm='24' :md='12')
       h4 Безопасность
-      el-form(label-position='top'
+      el-form(v-loading='isSecurityInfoLoading'
+              label-position='top'
               @submit.native.prevent='submitSecurityInfo')
         el-form-item(label='Новый пароль')
           el-input(v-model='newPassword1'
@@ -118,7 +119,8 @@ export default Vue.extend({
       newPassword2: '',
       oldPassword: '',
       isPublicInfoLoading: false,
-      isAccountInfoLoading: false
+      isAccountInfoLoading: false,
+      isSecurityInfoLoading: false
     }
   },
 
@@ -240,7 +242,7 @@ export default Vue.extend({
       }
     },
 
-    submitSecurityInfo () {
+    async submitSecurityInfo () {
       const { newPassword1: new1, newPassword2: new2, oldPassword: old } = this
       const { newPassword1, newPassword2, oldPassword } = this.$v
       const passwords = [newPassword1, newPassword2, oldPassword]
@@ -248,7 +250,17 @@ export default Vue.extend({
       if (new1 !== new2) {
         this.$message.error('Пароли не совпадают')
       } else if (passwords.every(p => !p.$invalid)) {
-        console.log(new1, new2, old)
+        this.isSecurityInfoLoading = true
+        try {
+          await this.$accessor.user.changePassword({
+            newPassword: new1,
+            oldPassword: old
+          })
+          this.$message.success('Вы сменили пароль')
+        } catch (e) {
+          this.$message.error(e.message)
+        }
+        this.isSecurityInfoLoading = false
         return
       }
 

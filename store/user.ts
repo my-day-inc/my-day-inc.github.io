@@ -103,6 +103,15 @@ export const actions = actionTree({ state }, {
     await this.app.$accessor.user.tryToAuth()
   },
 
+  async changePassword (_, { newPassword, oldPassword }): Promise<void> {
+    const { $userbase } = this.app.context
+
+    await $userbase.updateUser({
+      newPassword,
+      currentPassword: oldPassword
+    })
+  },
+
   reset ({ commit }): void {
     commit('SET_AUTHENTICATED', false)
     commit('SET_USER_INFO', {})
