@@ -92,6 +92,17 @@ export const actions = actionTree({ state }, {
     await this.app.$accessor.user.tryToAuth()
   },
 
+  async changeEmail (_, email: string): Promise<void> {
+    const { $userbase } = this.app.context
+
+    await $userbase.updateUser({
+      email,
+      username: email // we use email as username
+    })
+
+    await this.app.$accessor.user.tryToAuth()
+  },
+
   reset ({ commit }): void {
     commit('SET_AUTHENTICATED', false)
     commit('SET_USER_INFO', {})

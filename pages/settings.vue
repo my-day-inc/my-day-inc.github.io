@@ -42,7 +42,8 @@ div
                   native-type='submit') Сохранить
 
       h4 Аккаунт
-      el-form(label-position='top'
+      el-form(v-loading='isAccountInfoLoading'
+              label-position='top'
               @submit.native.prevent='submitAccountInfo')
         el-form-item(label='Почта')
           el-input(v-model='email'
@@ -116,7 +117,8 @@ export default Vue.extend({
       newPassword1: '',
       newPassword2: '',
       oldPassword: '',
-      isPublicInfoLoading: false
+      isPublicInfoLoading: false,
+      isAccountInfoLoading: false
     }
   },
 
@@ -215,10 +217,19 @@ export default Vue.extend({
       }
     },
 
-    submitAccountInfo () {
+    async submitAccountInfo () {
       const { email } = this.$v
+      const mail = this.email
+
       if (!email.$invalid) {
-        console.log(this.email)
+        this.isAccountInfoLoading = true
+        try {
+          await this.$accessor.user.changeEmail(mail)
+          this.$message.success(`Вы сменили почту на ${mail}`)
+        } catch (e) {
+          this.$message.error(e.message)
+        }
+        this.isAccountInfoLoading = false
         return
       }
 
