@@ -1,5 +1,6 @@
 <template lang='pug'>
-el-form(label-position='top')
+el-form(label-position='top'
+        @submit.native.prevent='submit')
   el-form-item(label='Почта')
     el-input(v-model='email'
              prefix-icon='el-icon-user'
@@ -27,7 +28,7 @@ el-form(label-position='top')
 
   el-form-item
     el-button(type='primary'
-              @click='submit') {{ buttonText }}
+              native-type='submit') {{ buttonText }}
 
   AppLink(v-if='isSignIn' to='/auth/recover') Забыли пароль?
   AppLink(v-if='!isSignUp' to='/auth/signup') Регистрация

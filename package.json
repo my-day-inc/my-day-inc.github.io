@@ -65,6 +65,7 @@
     "rules": {
       "order/properties-alphabetical-order": null,
       "block-opening-brace-space-before": null,
+      "max-nesting-depth": null,
       "declaration-block-trailing-semicolon": "never",
       "number-leading-zero": "never"
     }

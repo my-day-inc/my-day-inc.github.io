@@ -1,6 +1,6 @@
 <template lang='pug'>
 el-menu(v-loading='isLoading'
-        :default-active='path'
+        :default-active='$route.path'
         collapse
         router)
   el-menu-item(index='/')
@@ -11,11 +11,13 @@ el-menu(v-loading='isLoading'
     i.el-icon-menu
     span(slot='title') Планировщик
 
-  el-menu-item(index='/docs' disabled)
+  el-menu-item(index='/docs'
+               disabled)
     i.el-icon-s-order
     span(slot='title') Документы
 
-  el-menu-item(index='/reports' disabled)
+  el-menu-item(index='/reports'
+               disabled)
     i.el-icon-s-marketing
     span(slot='title') Отчеты
 
@@ -23,7 +25,8 @@ el-menu(v-loading='isLoading'
     i.el-icon-s-tools
     span(slot='title') Настройки
 
-  el-menu-item(v-if='isAuthenticated' @click='signOut')
+  el-menu-item.no-index(v-if='isAuthenticated'
+                        @click='signOut')
     i.el-icon-error
     span(slot='title') Выйти
 </template>
@@ -39,9 +42,6 @@ export default Vue.extend({
   },
 
   computed: {
-    path (): string {
-      return this.$route.path
-    },
     isAuthenticated (): boolean {
       return this.$accessor.user.isAuthenticated
     }
@@ -64,9 +64,12 @@ export default Vue.extend({
 </script>
 
 <style lang='sass' scoped>
-  .el
-    &-menu
-      position: sticky
-      top: 0
-      height: 100vh
+.el
+  &-menu
+    position: sticky
+    top: 0
+    height: 100vh
+
+    .no-index
+      color: #909399 !important
 </style>

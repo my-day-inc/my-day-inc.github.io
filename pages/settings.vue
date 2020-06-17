@@ -1,7 +1,16 @@
 <template lang='pug'>
 div
   h1 Настройки
-  p.id {{ userInfo.userId }}
+  p.id
+    | {{ userInfo.userId }}
+    br
+    | Это ваш уникальный id
+
+  p
+    | Чтобы поделиться с другими своим расписанием, отправьте им
+    |
+    n-link(:to='`/dashboard/${userInfo.userId}`') эту
+    |  ссылку.
 </template>
 
 <script lang='ts'>
