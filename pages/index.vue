@@ -3,11 +3,8 @@ div
   h1 Мой день
 
   p.desc
-    | Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-    | Morbi mattis dictum mauris. Phasellus facilisis urna eget
-    | erat luctus maximus. Aenean et consectetur nisl.
-    | Donec id rutrum ante, ac mollis lectus.
-    | Nulla diam dui, varius non ipsum eu, pharetra sollicitudin quam.
+    | Добро пожаловать на сайт "Социальный ежедневник".
+    | Записывать свои планы и делиться ими со всеми желающими стало легко и просто!
 
   el-carousel(height='500px'
               :interval='5000')
@@ -16,17 +13,28 @@ div
 
   h3 Подробнее
   p.desc
-    | Interdum et malesuada fames ac ante ipsum primis in faucibus. Suspendisse
-    | convallis neque vitae facilisis malesuada. Quisque fringilla a nisi nec suscipit.
-    | Maecenas bibendum tincidunt enim vel tristique. Maecenas ornare felis at metus
-    | semper pharetra. Donec sed tellus justo. Aliquam ut dictum elit. Suspendisse diam est,
-    | interdum feugiat felis id, commodo posuere ante. Nunc pretium accumsan tincidunt.
+    | На сегодняшний день планирование своих дел является важной
+    | частью человека, если он хочет все успевать и завершать дела вовремя.
     br
     br
-    | Duis posuere vel ex tincidunt semper. In tempor urna urna, ac suscipit sapien eleifend ut.
-    | Sed dictum venenatis justo, in elementum lacus efficitur vel. Duis sed enim maximus,
-    | fermentum tortor in, lobortis lorem. Quisque posuere, ante a lacinia laoreet,
-    | tortor arcu scelerisque eros, ullamcorper commodo ex lacus a urna.
+    | В 21 веке всю информацию удобно хранить в цифровом виде на наших
+    | компьютерах или телефонах, но что делать, если времени хватает только
+    | для того, чтобы записать свои дела, а поделиться информацией со всеми
+    | уже долго и сложно?
+    br
+    br
+    | Современная система коммуникации все активнее использует
+    | информационные технологии и компьютерные телекоммуникации.
+    | Особенно динамично развивается система общения между людьми с помощью
+    | смарфонов и компьютеров, чему способствует ряд факторов,
+    | и прежде всего - оснащение практически каждого человека
+    | компьютерной техникой и развитие сообщества сетей Интернет.
+    br
+    br
+    | Практика показывает, что почти 50% времени тратится впустую
+    | при планирование своего расписания вручную.
+    | В этом поможет "Социальный ежедневник" - планирование своих дел
+    | и распространение их между своими близкими, коллегами, друзьями и другими.
 
   el-steps(:active='2' align-center)
     el-step(title='Step 1' description='Some description')
