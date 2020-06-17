@@ -2,6 +2,11 @@
 div
   h1 {{ title }}
 
+  el-button(v-if='myself'
+            icon='el-icon-s-promotion'
+            round
+            @click='share') Поделиться
+
   .dashboard
     el-row.cols(type='flex'
                 justify='space-between'
@@ -123,6 +128,19 @@ export default Vue.extend({
     },
     tasksLater (): Item<Task>[] {
       return this.tasks.filter(t => new Date(t.item.date) > this.week)
+    }
+  },
+
+  methods: {
+    async share () {
+      const path = window.location.href
+      const id = this.$accessor.user.userInfo.userId
+      try {
+        await (this as any).$copyText(`${path}/${id}`)
+        this.$message.success('Ссылка на профиль скопирована')
+      } catch (e) {
+        this.$message.error(e.message)
+      }
     }
   }
 })

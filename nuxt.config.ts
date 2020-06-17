@@ -57,7 +57,8 @@ export default {
   */
   modules: [
     '@nuxtjs/axios',
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+    'nuxt-clipboard2'
   ],
   /*
   ** Typescript configuration
