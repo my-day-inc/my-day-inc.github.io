@@ -1,6 +1,7 @@
 <template lang='pug'>
 AppCard(v-loading='isLoading'
         :name='taskName'
+        :show-button='showButton'
         :action-text='actionText'
         :button-type='buttonType'
         @action='action')
@@ -45,21 +46,22 @@ export default Vue.extend({
   components: { AppCard },
 
   props: {
+    showButton: {
+      type: Boolean,
+      default: true
+    } as PropOptions<boolean>,
     itemId: {
       type: String,
       default: null
     } as PropOptions<string | null>,
-
     task: {
       type: Object,
       default: null
     } as PropOptions<Task | null>,
-
     actionType: {
       type: String,
       default: 'add'
     } as PropOptions<CardAction>,
-
     period: {
       type: String,
       default: 'week'

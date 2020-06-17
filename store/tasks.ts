@@ -16,13 +16,15 @@ export const actions = actionTree({ state }, {
     await this.app.$accessor.user.tryToAuth()
   },
 
-  async addItem ({ getters }, item: Task): Promise<void> {
+  async addItem ({ getters, rootState }, item: Task): Promise<void> {
     const { $userbase } = this.app.context
 
+    const { profile } = rootState.user.userInfo
     const itemWithId = { item, itemId: randomStr() }
 
     await $userbase.updateUser({
       profile: {
+        ...profile,
         tasks: JSON.stringify([...getters.items, itemWithId])
       }
     })
@@ -30,11 +32,14 @@ export const actions = actionTree({ state }, {
     await this.app.$accessor.tasks.getItems()
   },
 
-  async deleteItem ({ getters }, itemId: string): Promise<void> {
+  async deleteItem ({ getters, rootState }, itemId: string): Promise<void> {
     const { $userbase } = this.app.context
+
+    const { profile } = rootState.user.userInfo
 
     await $userbase.updateUser({
       profile: {
+        ...profile,
         tasks: JSON.stringify([...getters.items.filter((i: Item<Task>) => i.itemId !== itemId)])
       }
     })
