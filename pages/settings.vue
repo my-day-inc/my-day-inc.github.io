@@ -7,12 +7,12 @@ div
     | можете изменить некоторые данные.
 
   el-row(:gutter='96')
-    el-col(v-loading='isPublicInfoLoading'
-           :xs='24'
+    el-col(:xs='24'
            :sm='24'
            :md='12')
       h4 Публичная информация
-      el-form(label-position='top'
+      el-form(v-loading='isPublicInfoLoading'
+              label-position='top'
               @submit.native.prevent='submitPublicInfo')
         el-form-item(label='Идентификатор')
           el-input(v-model='user.userInfo.userId'
