@@ -133,10 +133,10 @@ export default Vue.extend({
 
   methods: {
     async share () {
-      const path = window.location.href
+      const path = window.location.origin
       const id = this.$accessor.user.userInfo.userId
       try {
-        await (this as any).$copyText(`${path}/${id}`)
+        await (this as any).$copyText(`${path}/user?id=${id}`)
         this.$message.success('Ссылка на профиль скопирована')
       } catch (e) {
         this.$message.error(e.message)
