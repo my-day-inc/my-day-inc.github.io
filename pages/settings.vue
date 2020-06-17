@@ -17,10 +17,12 @@ div
         el-form-item(label='Идентификатор')
           el-input(v-model='user.userInfo.userId'
                    disabled)
-            el-button(slot='append'
-                      icon='el-icon-copy-document'
-                      title='Скопировать'
-                      @click='copyId')
+            el-tooltip(slot='append'
+                       effect='dark'
+                       content='Скопировать'
+                       placement='top-end')
+              el-button(icon='el-icon-copy-document'
+                        @click='copyId')
 
         el-form-item(label='Имя')
           el-input(v-model='firstName'
@@ -55,8 +57,10 @@ div
                    clearable)
 
         el-form-item(label='Закрытый профиль')
-          el-switch(title='Пока недоступно'
-                    disabled)
+          el-tooltip(effect='dark'
+                     content='Пока недоступно'
+                     placement='right')
+            el-switch(disabled)
 
         el-button(type='primary'
                   native-type='submit') Сохранить
