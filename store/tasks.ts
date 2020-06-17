@@ -1,49 +1,42 @@
-import { mutationTree, actionTree } from 'typed-vuex'
+import { getterTree, actionTree } from 'typed-vuex'
+import { randomStr } from '~/plugins/_'
 import { Item, Task } from '~/types/dashboard'
 
-export const state = () => ({
-  items: [] as Item<Task>[]
-})
+export const state = () => ({})
 
-export const mutations = mutationTree(state, {
-  SET_ITEMS (state, items) {
-    state.items = items
+export const getters = getterTree(state, {
+  items (_state, _getters, rootState) {
+    const profile = rootState.user.userInfo.profile
+    return profile?.tasks ? JSON.parse(rootState.user.userInfo.profile.tasks) : []
   }
 })
 
 export const actions = actionTree({ state }, {
-  async getItems ({ commit }): Promise<void> {
-    const { $userbase } = this.app.context
-
-    await $userbase.openDatabase({
-      databaseName: 'tasks',
-      changeHandler: (items: Item<Task>[]) => commit('SET_ITEMS', items)
-    })
+  async getItems (): Promise<void> {
+    await this.app.$accessor.user.tryToAuth()
   },
 
-  async addItem (_, item: Task): Promise<void> {
+  async addItem ({ getters }, item: Task): Promise<void> {
     const { $userbase } = this.app.context
 
-    await $userbase.insertItem({
-      databaseName: 'tasks',
-      item
+    const itemWithId = { item, itemId: randomStr() }
+
+    await $userbase.updateUser({
+      profile: {
+        tasks: JSON.stringify([...getters.items, itemWithId])
+      }
     })
 
     await this.app.$accessor.tasks.getItems()
   },
 
-  async deleteItem ({ commit, state }, itemId: string): Promise<void> {
+  async deleteItem ({ getters }, itemId: string): Promise<void> {
     const { $userbase } = this.app.context
 
-    await $userbase.deleteItem({
-      databaseName: 'tasks',
-      itemId
+    await $userbase.updateUser({
+      profile: {
+        tasks: JSON.stringify([...getters.items.filter((i: Item<Task>) => i.itemId !== itemId)])
+      }
     })
-
-    commit('SET_ITEMS', state.items.filter(i => i.itemId !== itemId))
-  },
-
-  reset ({ commit }): void {
-    commit('SET_ITEMS', [])
   }
 })

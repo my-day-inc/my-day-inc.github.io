@@ -29,7 +29,7 @@ export const actions = actionTree({ state }, {
       item
     })
 
-    await this.app.$accessor.tasks.getItems()
+    await this.app.$accessor.contacts.getItems()
   },
 
   async deleteItem ({ commit, state }, itemId: string): Promise<void> {

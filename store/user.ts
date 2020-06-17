@@ -67,7 +67,6 @@ export const actions = actionTree({ state }, {
     await $userbase.signOut()
 
     $accessor.user.reset()
-    $accessor.tasks.reset()
     $accessor.contacts.reset()
   },
 
