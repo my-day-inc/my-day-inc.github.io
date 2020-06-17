@@ -45,26 +45,22 @@ div
     h3 Остались вопросы?
 
     el-collapse
-      el-collapse-item(title='Вопрос' name='1')
+      el-collapse-item(title='Регистрация' name='1')
         p
-          | Consistent with real life: in line with the process and
-          | logic of real life, and comply with languages and habits
-          | that the users are used to
-      el-collapse-item(title='Еще вопрос' name='2')
+          | Чтобы зарегистрироваться, пройдите
+          |
+          n-link(to='/auth/signup') сюда
+          |  и введите учетные данные.
+      el-collapse-item(title='Задачи' name='2')
         p
-          | Consistent with real life: in line with the process and
-          | logic of real life, and comply with languages and habits
-          | that the users are used to
-      el-collapse-item(title='Тупой вопрос' name='3')
+          | Для добавления новых задач, воспользуйтесь
+          |
+          n-link(to='/dashboard') планировщиком
+          | .
+      el-collapse-item(title='Как поделиться с друзьями' name='3')
         p
-          | Consistent with real life: in line with the process and
-          | logic of real life, and comply with languages and habits
-          | that the users are used to
-      el-collapse-item(title='Для тупорылых' name='4')
-        p
-          | Consistent with real life: in line with the process and
-          | logic of real life, and comply with languages and habits
-          | that the users are used to
+          | Чтобы поделиться с друзьями, зайдите в
+          | планировщик и скопируйте ссылку на профиль.
 
   .rate
     h4
