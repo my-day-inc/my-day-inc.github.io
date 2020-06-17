@@ -37,10 +37,9 @@ div
     | и распространение их между своими близкими, коллегами, друзьями и другими.
 
   el-steps(:active='2' align-center)
-    el-step(title='Step 1' description='Some description')
-    el-step(title='Step 2' description='Some description')
-    el-step(title='Step 3' description='Some description')
-    el-step(title='Step 4' description='Some description')
+    el-step(title='Шаг 1' description='Зарегистрируйтесь')
+    el-step(title='Шаг 2' description='Добавьте задачи в планировщик')
+    el-step(title='Шаг 3' description='Поделитесь с друзьями своей страницей')
 
   .faq
     h3 Остались вопросы?
@@ -68,20 +67,11 @@ div
           | that the users are used to
 
   .rate
-    h4 Была ли статья полезной?
-    el-rate(v-model='rate' :colors='rateColors')
+    h4
+      | Если у вас остались вопросы, пишите:
+      |
+      a(href='mailto:cmartkrik@gmail.com') cmartkrik@gmail.com
 </template>
-
-<script lang='ts'>
-export default {
-  data () {
-    return {
-      rate: null,
-      rateColors: ['#99A9BF', '#F7BA2A', '#FF9900']
-    }
-  }
-}
-</script>
 
 <style lang='sass' scoped>
   h3,
@@ -124,4 +114,13 @@ export default {
 
     .el-rate
       margin-top: .7rem
+
+    a
+      color: #409eff
+
+      &:hover
+        opacity: .7
+
+      &:active
+        opacity: .5
 </style>
