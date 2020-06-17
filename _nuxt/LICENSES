@@ -18,6 +18,13 @@
  */
 
 /*!
+ * clipboard.js v2.0.6
+ * https://clipboardjs.com/
+ * 
+ * Licensed MIT © Zeno Rocha
+ */
+
+/*!
  * normalize-path <https://github.com/jonschlinkert/normalize-path>
  *
  * Copyright (c) 2014-2018, Jon Schlinkert.
