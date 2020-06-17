@@ -8,6 +8,7 @@ el-form(label-position='top'
              type='email'
              :minlength='5'
              :maxlength='128'
+             required
              autofocus
              clearable)
 
@@ -19,6 +20,7 @@ el-form(label-position='top'
              type='password'
              :minlength='6'
              :maxlength='16'
+             required
              clearable
              show-password)
 

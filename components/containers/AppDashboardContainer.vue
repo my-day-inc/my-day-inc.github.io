@@ -3,7 +3,7 @@ div
   h1 {{ title }}
 
   el-button(v-if='myself'
-            icon='el-icon-s-promotion'
+            icon='el-icon-share'
             round
             @click='share') Поделиться
 
