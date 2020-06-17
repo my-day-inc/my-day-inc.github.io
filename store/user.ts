@@ -70,12 +70,26 @@ export const actions = actionTree({ state }, {
     $accessor.contacts.reset()
   },
 
-  async recover (_, authData): Promise<void> {
+  async recover (_, authData: AuthData): Promise<void> {
     const { $userbase } = this.app.context
 
     await $userbase.forgotPassword({
       username: authData.email
     })
+  },
+
+  async changeName ({ state }, { firstName, lastName }): Promise<void> {
+    const { $userbase } = this.app.context
+
+    await $userbase.updateUser({
+      profile: {
+        ...state.userInfo.profile,
+        firstName,
+        lastName
+      }
+    })
+
+    await this.app.$accessor.user.tryToAuth()
   },
 
   reset ({ commit }): void {

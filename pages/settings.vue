@@ -7,7 +7,10 @@ div
     | можете изменить некоторые данные.
 
   el-row(:gutter='96')
-    el-col(:xs='24' :sm='24' :md='12')
+    el-col(v-loading='isPublicInfoLoading'
+           :xs='24'
+           :sm='24'
+           :md='12')
       h4 Публичная информация
       el-form(label-position='top'
               @submit.native.prevent='submitPublicInfo')
@@ -24,6 +27,7 @@ div
                    placeholder='Введите имя'
                    :minlength='2'
                    :maxlength='128'
+                   required
                    clearable)
 
         el-form-item(label='Фамилия')
@@ -31,6 +35,7 @@ div
                    placeholder='Введите фамилию'
                    :minlength='2'
                    :maxlength='128'
+                   required
                    clearable)
 
         el-button(type='primary'
@@ -110,16 +115,19 @@ export default Vue.extend({
       closedAccount: false,
       newPassword1: '',
       newPassword2: '',
-      oldPassword: ''
+      oldPassword: '',
+      isPublicInfoLoading: false
     }
   },
 
   validations: {
     firstName: {
+      required,
       minLength: minLength(2),
       maxLength: maxLength(128)
     },
     lastName: {
+      required,
       minLength: minLength(2),
       maxLength: maxLength(128)
     },
@@ -153,9 +161,11 @@ export default Vue.extend({
   },
 
   mounted () {
-    const firstName = this.user?.userInfo.profile?.firstName
-    const lastName = this.user?.userInfo.profile?.lastName
-    const email = this.user?.userInfo.username
+    const { userInfo } = this.user
+    const profile = userInfo.profile
+
+    const firstName = profile?.firstName
+    const lastName = profile?.lastName
 
     if (firstName) {
       this.firstName = firstName
@@ -163,9 +173,7 @@ export default Vue.extend({
     if (lastName) {
       this.lastName = lastName
     }
-    if (email) {
-      this.email = email
-    }
+    this.email = userInfo.username
   },
 
   methods: {
@@ -179,14 +187,28 @@ export default Vue.extend({
       }
     },
 
-    submitPublicInfo () {
+    async submitPublicInfo () {
       const { firstName, lastName } = this.$v
       if (!firstName.$invalid && !lastName.$invalid) {
-        console.log(this.firstName, this.lastName)
+        this.isPublicInfoLoading = true
+        try {
+          await this.$accessor.user.changeName({
+            firstName: this.firstName,
+            lastName: this.lastName
+          })
+          this.$message.success('Вы сменили имя')
+        } catch (e) {
+          this.$message.error(e.message)
+        }
+        this.isPublicInfoLoading = false
         return
       }
 
-      if (!firstName.minLength || !firstName.maxLength) {
+      if (!firstName.required) {
+        this.$message.error('Введите имя')
+      } else if (!lastName.required) {
+        this.$message.error('Введите фамилию')
+      } else if (!firstName.minLength || !firstName.maxLength) {
         this.$message.error('Имя должно быть от 2 до 128 символов')
       } else if (!lastName.minLength || !lastName.maxLength) {
         this.$message.error('Фамилия должна быть от 2 до 128 символов')
