@@ -7189,10 +7189,10 @@ nuxt-typed-vuex@^0.1.18:
     normalize-path "^3.0.0"
     typed-vuex "0.1.22"
 
-nuxt-userbase-module@^0.3.1:
-  version "0.3.1"
-  resolved "https://registry.yarnpkg.com/nuxt-userbase-module/-/nuxt-userbase-module-0.3.1.tgz#47863ad3b7f772b5374db334dae8889c202e7956"
-  integrity sha512-MUlkNyJUlAc2QuSWBwdChGM3+rqRfqjKqNf6k3w2rFY7qmNJZMgV3UcDwHMZWRDNLM9Q49eKvhsTkuYG36frfg==
+nuxt-userbase-module@^0.4.1:
+  version "0.4.1"
+  resolved "https://registry.yarnpkg.com/nuxt-userbase-module/-/nuxt-userbase-module-0.4.1.tgz#5b2d9188c13bfcfb530c4857e607da465b554817"
+  integrity sha512-PWiycziFHsyWxScviWCSAz7QjZLM67X0bMk/4clNdgDK8Q4pLCcu1BNIKFwsd8sY0yqNbN5sYgSi2eM9mtkV7Q==
   dependencies:
     userbase-js latest
 
@@ -10460,12 +10460,7 @@ typedarray@^0.0.6:
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
 
-typescript@^3.0.0:
-  version "3.9.7"
-  resolved "https://registry.yarnpkg.com/typescript/-/typescript-3.9.7.tgz#98d600a5ebdc38f40cb277522f12dc800e9e25fa"
-  integrity sha512-BLbiRkiBzAwsjut4x/dsibSTB6yWpwT5qWmC2OfuCg3GgVQCSgMs4vEctYPhsaGtd0AeuuHMkjZ2h2WG8MSzRw==
-
-typescript@~4.0:
+typescript@^4.0.0, typescript@~4.0:
   version "4.0.3"
   resolved "https://registry.yarnpkg.com/typescript/-/typescript-4.0.3.tgz#153bbd468ef07725c1df9c77e8b453f8d36abba5"
   integrity sha512-tEu6DGxGgRJPb/mVPIZ48e69xCn2yRmCgYmDugAVwmJ6o+0u1RI18eO7E7WBTLYLaEVVOhwQmcdhQHweux/WPg==
