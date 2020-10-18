@@ -60,14 +60,6 @@ export default {
     'nuxt-clipboard2'
   ],
   /*
-  ** Typescript configuration
-  */
-  typescript: {
-    typeCheck: {
-      eslint: true
-    }
-  },
-  /*
   ** Userbase configuration
   */
   userbase: {
